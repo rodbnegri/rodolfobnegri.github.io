@@ -9,10 +9,10 @@
     --brand-navy-dark: #001838;
     --brand-navy-light: #003e8f;
     --brand-navy-subtle: #081e3d;
-    --brand-gold: #df8600;
-    --brand-gold-hover: #ff9e1b;
-    --brand-gold-glow: rgba(223, 134, 0, 0.35);
-    --brand-gold-muted: rgba(223, 134, 0, 0.15);
+    --brand-gold: #c47712;
+    --brand-gold-hover: #d89432;
+    --brand-gold-glow: rgba(196, 119, 18, 0.22);
+    --brand-gold-muted: rgba(196, 119, 18, 0.12);
 
     /* Dark Theme (Default) */
     --bg-base: #050608;
@@ -30,7 +30,7 @@
 
     --border-subtle: rgba(255, 255, 255, 0.08);
     --border-card: rgba(148, 163, 184, 0.16);
-    --border-focus: #df8600;
+    --border-focus: #c47712;
 
     --badge-bg: rgba(0, 42, 98, 0.85);
     --badge-text: #e2e8f0;
@@ -66,7 +66,7 @@
 
     --border-subtle: rgba(0, 42, 98, 0.1);
     --border-card: rgba(0, 42, 98, 0.15);
-    --border-focus: #df8600;
+    --border-focus: #c47712;
 
     --badge-bg: rgba(0, 42, 98, 0.07);
     --badge-text: #002a62;
@@ -588,7 +588,7 @@ button {
 }
 
 .hero-greeting .gold-gradient-text {
-    background: linear-gradient(135deg, #df8600 0%, #ffbe53 100%);
+    background: linear-gradient(135deg, var(--brand-gold) 0%, #e0a052 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -626,7 +626,7 @@ button {
     display: inline-flex;
     align-items: center;
     gap: 0.65rem;
-    background: linear-gradient(135deg, #df8600 0%, #ca7600 100%);
+    background: linear-gradient(135deg, var(--brand-gold) 0%, #a8610f 100%);
     color: #ffffff;
     font-weight: 700;
     padding: 0.85rem 1.75rem;
@@ -640,7 +640,7 @@ button {
     color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(223, 134, 0, 0.45);
-    background: linear-gradient(135deg, #f09200 0%, #df8600 100%);
+    background: linear-gradient(135deg, #d28a2a 0%, var(--brand-gold) 100%);
 }
 
 .btn-secondary-navy {
