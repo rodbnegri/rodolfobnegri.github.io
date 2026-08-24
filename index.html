@@ -3,363 +3,1084 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rodolfo Batista Negri - Flight Dynamics Engineer</title>
-    <meta name="description" content="Personal webpage of Rodolfo Batista Negri, GNC Researcher & Flight Dynamics Engineer at the Satellite Control Center of the National Institute for Space Research (INPE).">
-    
-    <!-- Google Fonts -->
+    <title>Dr. Rodolfo Batista Negri | GNC Researcher & Flight Dynamics Engineer</title>
+    <meta name="description" content="Personal academic and professional website of Dr. Rodolfo Batista Negri, GNC Researcher & Flight Dynamics Engineer at the Satellite Control Center (CCS) of the National Institute for Space Research (INPE).">
+    <meta name="keywords" content="Rodolfo Batista Negri, Astrodynamics, GNC, Flight Dynamics, INPE, Spacecraft Autonomy, Satellite Control, Asteroids, Celestial Mechanics">
+    <meta name="author" content="Dr. Rodolfo Batista Negri">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Dr. Rodolfo Batista Negri - GNC Researcher & Flight Dynamics Engineer">
+    <meta property="og:description" content="Astrodynamics, Spacecraft Autonomy, Satellite Operations (SCD-1, SCD-2, CBERS-4, CBERS-4A, AMZ-1), and Guidance, Navigation & Control.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rodolfobnegri.github.io/">
+
+    <!-- Google Fonts: Outfit (Headings) & Inter (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom Theme CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-    
-    <!-- Phosphor Icons for elegant scalable icons -->
+
+    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
-<body class="dark-theme">
-    <div id="particles-js"></div> 
+<body>
+    <!-- Starfield & Orbital Animation Canvas -->
+    <canvas id="space-canvas"></canvas>
 
-    <div class="layout">
+    <!-- Mobile Top Navigation Bar -->
+    <header class="mobile-topbar">
+        <div class="mobile-brand">
+            <i class="ph ph-planet" style="color: var(--brand-gold); font-size: 1.5rem;"></i>
+            <span class="name">Dr. Rodolfo B. Negri</span>
+        </div>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation menu">
+            <i class="ph ph-list"></i>
+        </button>
+    </header>
+
+    <div class="layout-container">
         <!-- Sidebar Navigation -->
-        <nav class="sidebar">
-            <div class="profile">
-                <div class="profile-img-container">
-                    <img src="https://ui-avatars.com/api/?name=Rodolfo+Negri&background=0D8ABC&color=fff&size=150" alt="Rodolfo Batista Negri" class="profile-img">
+        <aside class="sidebar">
+            <div class="profile-card">
+                <div class="profile-avatar-wrap">
+                    <img src="https://ui-avatars.com/api/?name=Rodolfo+Negri&background=002a62&color=df8600&size=260&bold=true" alt="Dr. Rodolfo Batista Negri" class="profile-avatar">
+                    <div class="status-orbit-badge" title="Active Operations at INPE CCS">
+                        <i class="ph ph-satellite"></i>
+                    </div>
                 </div>
-                <h1 class="name">Rodolfo Batista Negri</h1>
-                <p class="title">GNC Researcher & Flight Dynamics Engineer</p>
+                <h1 class="profile-name">Rodolfo B. Negri</h1>
+                <p class="profile-tagline">GNC Researcher & Flight Dynamics Engineer</p>
+                <p class="profile-institution">
+                    <i class="ph ph-map-pin"></i> INPE · Satellite Control Center
+                </p>
             </div>
 
-            <ul class="nav-links">
-                <li><a href="#home" class="active" data-section="home"><i class="ph ph-house"></i> Home</a></li>
-                <li><a href="#about" data-section="about"><i class="ph ph-user"></i> About & CV</a></li>
-                <li><a href="#research" data-section="research"><i class="ph ph-rocket"></i> Research</a></li>
-                <li><a href="#publications" data-section="publications"><i class="ph ph-book-open"></i> Publications</a></li>
-                <li><a href="#teaching" data-section="teaching"><i class="ph ph-chalkboard-teacher"></i> Teaching</a></li>
-                <li><a href="#contact" data-section="contact"><i class="ph ph-envelope"></i> Contact</a></li>
+            <!-- Main Navigation Links -->
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active" data-section="home">
+                        <i class="ph ph-house"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link" data-section="about">
+                        <i class="ph ph-user"></i> About & Journey
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#operations" class="nav-link" data-section="operations">
+                        <i class="ph ph-satellite"></i> Operations & Research
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#publications" class="nav-link" data-section="publications">
+                        <i class="ph ph-book-open"></i> Publications
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#teaching" class="nav-link" data-section="teaching">
+                        <i class="ph ph-chalkboard-teacher"></i> Teaching & Service
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link" data-section="contact">
+                        <i class="ph ph-envelope"></i> Contact
+                    </a>
+                </li>
             </ul>
 
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/rodolfobnegri/" target="_blank" title="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
-                <a href="https://scholar.google.com/citations?user=mf_cztYAAAAJ&hl=pt-BR" target="_blank" title="Google Scholar"><i class="ph ph-graduation-cap"></i></a>
-                <a href="https://orcid.org/0000-0002-8196-8579" target="_blank" title="ORCID"><i class="ph ph-identification-card"></i></a>
-                <a href="https://www.webofscience.com/wos/author/record/AAE-5851-2019" target="_blank" title="Web of Science"><i class="ph ph-article"></i></a>
+            <!-- Verified Academic & Professional Profiles -->
+            <div class="sidebar-social">
+                <div class="social-title">Academic & Web Profiles</div>
+                <div class="social-icons-grid">
+                    <a href="https://www.linkedin.com/in/rodolfobnegri/" target="_blank" rel="noopener noreferrer" class="social-btn" title="LinkedIn Profile" id="link-linkedin">
+                        <i class="ph ph-linkedin-logo"></i>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=mf_cztYAAAAJ&hl=pt-BR" target="_blank" rel="noopener noreferrer" class="social-btn" title="Google Scholar" id="link-scholar">
+                        <i class="ph ph-graduation-cap"></i>
+                    </a>
+                    <a href="https://orcid.org/0000-0002-8196-8579" target="_blank" rel="noopener noreferrer" class="social-btn" title="ORCID Profile (0000-0002-8196-8579)" id="link-orcid">
+                        <i class="ph ph-identification-card"></i>
+                    </a>
+                    <a href="https://www.webofscience.com/wos/author/record/AAE-5851-2019" target="_blank" rel="noopener noreferrer" class="social-btn" title="Web of Science (AAE-5851-2019)" id="link-wos">
+                        <i class="ph ph-article"></i>
+                    </a>
+                    <a href="https://www.researchgate.net/profile/Rodolfo-Negri" target="_blank" rel="noopener noreferrer" class="social-btn" title="ResearchGate" id="link-researchgate">
+                        <i class="ph ph-flask"></i>
+                    </a>
+                    <a href="http://lattes.cnpq.br/3882772591605335" target="_blank" rel="noopener noreferrer" class="social-btn" title="Currículo Lattes (CNPq)" id="link-lattes">
+                        <i class="ph ph-tree-structure"></i>
+                    </a>
+                    <a href="https://github.com/rodolfobnegri" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub" id="link-github">
+                        <i class="ph ph-github-logo"></i>
+                    </a>
+                </div>
             </div>
 
-            <div class="theme-toggle">
-                <button id="theme-btn" aria-label="Toggle Theme">
+            <!-- Footer: Theme Switcher & CV Link -->
+            <div class="sidebar-footer">
+                <button id="theme-btn" class="theme-toggle-btn" aria-label="Toggle dark/light theme">
                     <i class="ph ph-sun"></i>
+                    <span class="theme-text">Light Mode</span>
                 </button>
+                <a href="CV.pdf" target="_blank" download="Rodolfo_Batista_Negri_CV.pdf" class="cv-mini-link" title="Download CV (PDF)">
+                    <i class="ph ph-file-pdf"></i> CV.pdf
+                </a>
             </div>
-        </nav>
+        </aside>
 
-        <!-- Main Content Area -->
-        <main class="content">
-            <!-- Home Section -->
-            <section id="home" class="section active">
-                <div class="hero">
-                    <h2 class="greeting">Hello, I'm Rodolfo.</h2>
-                    <p class="intro">
-                        I am a <span class="highlight">GNC Researcher & Flight Dynamics Engineer</span> at the Satellite Control Center (CCS) of the National Institute for Space Research (INPE) in Brazil.
+        <!-- Main Dynamic Content Container -->
+        <main class="main-content">
+
+            <!-- ============================================================
+                 1. HOME / HERO SECTION
+                 ============================================================ -->
+            <section id="home" class="content-section active">
+                <div class="hero-wrapper">
+                    <div class="hero-pill-badge">
+                        <span class="pulse-dot"></span>
+                        <span>Flight Dynamics · GNC · Spacecraft Autonomy</span>
+                    </div>
+
+                    <h2 class="hero-greeting">
+                        Hi, I'm <span class="gold-gradient-text">Rodolfo B. Negri</span>.
+                    </h2>
+
+                    <p class="hero-lead">
+                        I am a <strong>Senior Flight Dynamics &amp; GNC Engineer</strong> at the Satellite Control Center (CCS) of Brazil's <strong>National Institute for Space Research (INPE)</strong>.
                     </p>
-                    <p class="sub-intro">
-                        My work revolves around astrodynamics, space mission design, nonlinear control, and developing state-of-the-art algorithms for spacecraft autonomy and navigation.
+
+                    <p class="hero-subtext">
+                        I build mission-critical software and algorithms that connect astrodynamics research to operational spacecraft. My work spans Orekit-based orbit determination and propagation, maneuver design, CCSDS toolchains, autonomous navigation, and asteroid mission design.
                     </p>
-                    <div class="cta-buttons">
-                        <a href="#about" class="btn primary" onclick="document.querySelector('[data-section=\'about\']').click()">View My Background</a>
-                        <a href="cv.pdf" target="_blank" class="btn secondary" title="Download CV"><i class="ph ph-download-simple"></i> Download CV</a>
+
+                    <div class="hero-cta-group">
+                        <a href="#publications" class="btn-primary-gold" data-jump="publications">
+                            <i class="ph ph-book-open"></i> Explore Publications
+                        </a>
+                        <a href="CV.pdf" target="_blank" download="Rodolfo_Batista_Negri_CV.pdf" class="btn-secondary-navy" title="Download Full Curriculum Vitae">
+                            <i class="ph ph-download-simple"></i> Download CV (PDF)
+                        </a>
+                        <a href="#operations" class="btn-secondary-navy" data-jump="operations">
+                            <i class="ph ph-satellite"></i> Satellite Fleet & GNC
+                        </a>
+                    </div>
+
+                    <div class="identity-strip">
+                        <div class="identity-strip-heading"><span class="eyebrow-mark"></span> Research identity</div>
+                        <p>GNC Researcher &amp; Navigation Engineer at INPE · 27 peer-review activities · 13 ORCID works</p>
+                        <div class="identity-links">
+                            <a href="https://www.linkedin.com/in/rodolfobnegri/" target="_blank" rel="noopener noreferrer"><i class="ph ph-linkedin-logo"></i> LinkedIn</a>
+                            <a href="https://scholar.google.com/citations?user=mf_cztYAAAAJ&amp;hl=pt-BR" target="_blank" rel="noopener noreferrer"><i class="ph ph-graduation-cap"></i> Scholar</a>
+                            <a href="https://orcid.org/0000-0002-8196-8579" target="_blank" rel="noopener noreferrer"><i class="ph ph-identification-card"></i> ORCID</a>
+                            <a href="https://www.webofscience.com/wos/author/record/AAE-5851-2019" target="_blank" rel="noopener noreferrer"><i class="ph ph-article"></i> Web of Science</a>
+                        </div>
+                    </div>
+
+                    <!-- Live Key Metrics / Counters -->
+                    <div class="hero-stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Active Satellites Managed (SCD-1, SCD-2, CBERS-4/4A, AMZ-1)</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">14+</div>
+                            <div class="stat-label">Years across flight dynamics, GNC research, and space software</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">Prestigious Awards (Wagner Sessin & MSCA Seal of Excellence)</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">6×</div>
+                            <div class="stat-label">Faster satellite workflow: 4 hours to 40 minutes per satellite</div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- About Section -->
-            <section id="about" class="section">
+            <!-- ============================================================
+                 2. ABOUT & JOURNEY SECTION
+                 ============================================================ -->
+            <section id="about" class="content-section">
                 <div class="section-header">
-                    <h2>About & Experience</h2>
-                    <div class="divider"></div>
+                    <div class="section-pretitle"><i class="ph ph-compass"></i> Background & Track Record</div>
+                    <h2 class="section-title">About & Experience</h2>
+                    <div class="section-accent-line"></div>
                 </div>
-                <div class="about-content">
+
+                <div class="about-bio-text">
                     <p>
-                        I hold a Ph.D. in Space Technology and Engineering from INPE. I am currently leading research in spacecraft autonomy, optical navigation, and GNC algorithms for next-generation missions while overseeing flight dynamics responsibilities over 5 satellites (SCD-1, SCD-2, CBERS-4, CBERS-4A, and AMZ-1).
+                        I am a <strong>Senior Flight Dynamics Engineer and GNC researcher</strong> with 14+ years of experience in spacecraft software, orbital mechanics, and autonomous systems. I currently lead the development of DINORekit, an Orekit-powered framework for orbit determination, high-precision propagation, maneuver calibration, and TLE generation for LEO missions at INPE's Satellite Control Center.
                     </p>
-                    
-                    <h3 class="timeline-title">Experience</h3>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Sep 2025 - Present</div>
-                            <h4 class="timeline-degree">GNC Researcher & Flight Dynamics Engineer</h4>
-                            <p class="timeline-institution">National Institute for Space Research (INPE) - Satellite Control Center</p>
-                            <p class="timeline-advisor">Shared flight dynamics responsibilities over 5 satellites, modernizing legacy architectures to CCSDS standards, and research in spacecraft autonomy.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Apr 2022 - May 2025</div>
-                            <h4 class="timeline-degree">Postdoctoral Researcher</h4>
-                            <p class="timeline-institution">Federal University of São Paulo (UNIFESP)</p>
-                            <p class="timeline-advisor">Project: Autonomous Spacecraft in Asteroid Missions. Simulated 6-DOF dynamics, implemented vision-based navigation in C++ (OpenCV), and integrated multi-language dynamics code.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Jun 2015 - Aug 2015</div>
-                            <h4 class="timeline-degree">Visiting Student Researcher</h4>
-                            <p class="timeline-institution">Jet Propulsion Laboratory (NASA JPL) - Pasadena, USA</p>
-                            <p class="timeline-advisor">Astrobiology group. Project: Determining Ganymede Profile with a Thermal-orbital Model.</p>
+                    <p style="margin-top: 1rem;">
+                        I hold a Ph.D. and a Master's in Space Engineering and Technology from INPE, a Bachelor's in Aeronautical Mechanical Engineering from UNIFEI, and completed an aerospace engineering exchange at George Washington University. I welcome conversations about research collaborations, mission operations, flight dynamics software, GNC, and aerospace engineering opportunities.
+                    </p>
+                </div>
+
+                <!-- Professional Experience Timeline -->
+                <h3 class="section-subtitle"><i class="ph ph-briefcase"></i> Professional Positions</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date-tag">Sep 2025 – Present</div>
+                        <h4 class="timeline-role">GNC Researcher & Flight Dynamics Engineer</h4>
+                        <div class="timeline-org">National Institute for Space Research (INPE) · Satellite Control Center (CCS)</div>
+                        <div class="timeline-desc">
+                            <ul>
+                                <li><strong>Operational Fleet Management:</strong> Shared flight dynamics responsibilities across 5 Earth-orbiting satellites: <em>SCD-1</em>, <em>SCD-2</em>, <em>CBERS-4</em>, <em>CBERS-4A</em>, and <em>AMAZÔNIA-1 (AMZ-1)</em>, including orbit determination, maneuver planning, and sensor calibration.</li>
+                                <li><strong>Anomaly Resolution:</strong> Successfully resolved a 13-year-old LEO satellite anomaly in pass prediction through in-depth orbital analysis.</li>
+                                <li><strong>Systems Modernization:</strong> Reverse-engineered legacy VAX/DEC binary software to modern 64-bit GNU Linux environments and implemented CCSDS-compliant automated toolchains in C++ and Python.</li>
+                                <li><strong>Software Engineering:</strong> Modernized mission-critical Fortran codebases using CMake build systems, Doxygen standards, and GCC compatibility.</li>
+                                <li><strong>Policy & Leadership:</strong> Elected Member of the Advisory Committee for the General Coordination of Infrastructure and Applied Research (CGIP, 2025–2027), contributing to Science & Technology policy formulation.</li>
+                            </ul>
                         </div>
                     </div>
 
-                    <h3 class="timeline-title" style="margin-top: 3rem;">Education</h3>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">2018 - 2022</div>
-                            <h4 class="timeline-degree">Ph.D. in Space Technology and Engineering</h4>
-                            <p class="timeline-institution">National Institute for Space Research - INPE, Brazil</p>
-                            <p class="timeline-advisor">Thesis: "Study on Dynamics, Guidance, Navigation, and Control Applied to Asteroid Deflection Missions."</p>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date-tag">Apr 2022 – May 2025</div>
+                        <h4 class="timeline-role">Postdoctoral Researcher</h4>
+                        <div class="timeline-org">Federal University of São Paulo (UNIFESP) · ICT</div>
+                        <div class="timeline-desc">
+                            Project: <em>Autonomous Spacecraft in Asteroid Missions</em> (Supervisor: Dr. Rodolpho Vilhena de Moraes). Developed 6-DOF coupled orbit-attitude dynamics, implemented computer vision-based navigation using OpenCV in C++, and engineered multi-language simulation pipelines combining Julia, Python, Fortran, and Blender for realistic optical camera rendering.
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">2017 - 2018</div>
-                            <h4 class="timeline-degree">M.S.E. in Space Technology and Engineering</h4>
-                            <p class="timeline-institution">National Institute for Space Research - INPE, Brazil</p>
-                            <p class="timeline-advisor">Thesis: "Swing-by Dynamics: Analysis of the Limitations of the Patched-conics Approximation."</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date-tag">Jun 2015 – Aug 2015</div>
+                        <h4 class="timeline-role">Visiting Student Researcher</h4>
+                        <div class="timeline-org">NASA Jet Propulsion Laboratory (JPL) · Pasadena, CA, USA</div>
+                        <div class="timeline-desc">
+                            Astrobiology Group (Mentor: Dr. Steven Vance). Conducted thermal-orbital modeling to determine Ganymede's internal structure and subsurface ocean profile.
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">2011 - 2016</div>
-                            <h4 class="timeline-degree">B.S.E. in Mechanical and Aeronautical Engineering</h4>
-                            <p class="timeline-institution">Federal University of Itajubá - UNIFEI, Brazil</p>
-                            <p class="timeline-advisor">Includes exchange in Aerospace Engineering at The George Washington University (2014-2015).</p>
+                    </div>
+                </div>
+
+                <!-- Education Timeline -->
+                <h3 class="section-subtitle"><i class="ph ph-graduation-cap"></i> Academic Education</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date-tag">2018 – 2022</div>
+                        <h4 class="timeline-role">Ph.D. in Space Technology and Engineering</h4>
+                        <div class="timeline-org">National Institute for Space Research (INPE), Brazil</div>
+                        <div class="timeline-desc">
+                            <strong>Thesis:</strong> <em>"Study on Dynamics, Guidance, Navigation, and Control Applied to Asteroid Deflection Missions."</em><br>
+                            <strong>Advisor:</strong> Prof. Antônio Fernando Bertachini de Almeida Prado.<br>
+                            Supported by a highly competitive FAPESP Doctoral Fellowship.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date-tag">2017 – 2018</div>
+                        <h4 class="timeline-role">M.S.E. in Space Technology and Engineering</h4>
+                        <div class="timeline-org">National Institute for Space Research (INPE), Brazil</div>
+                        <div class="timeline-desc">
+                            <strong>Thesis:</strong> <em>"Swing-by Dynamics: Analysis of the Limitations of the Patched-conics Approximation."</em><br>
+                            <strong>Advisor:</strong> Prof. Antônio Fernando Bertachini de Almeida Prado.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date-tag">2011 – 2016</div>
+                        <h4 class="timeline-role">B.S.E. in Mechanical and Aeronautical Engineering</h4>
+                        <div class="timeline-org">Federal University of Itajubá (UNIFEI), Brazil</div>
+                        <div class="timeline-desc">
+                            Includes academic exchange in Aerospace Engineering at <strong>The George Washington University (GWU)</strong>, Washington, DC (2014–2015) via CAPES Science Without Borders.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Awards & Honors -->
+                <h3 class="section-subtitle"><i class="ph ph-trophy"></i> Awards & Distinctions</h3>
+                <div class="awards-grid">
+                    <div class="award-card">
+                        <div class="award-icon-wrap"><i class="ph ph-medal"></i></div>
+                        <div class="award-year">2024</div>
+                        <h4 class="award-name">Wagner Sessin Prize</h4>
+                        <p class="award-desc">Awarded for outstanding contributions to Astrodynamics and Guidance, Navigation, and Control (GNC) in Brazil.</p>
+                    </div>
+
+                    <div class="award-card">
+                        <div class="award-icon-wrap"><i class="ph ph-seal-check"></i></div>
+                        <div class="award-year">2023</div>
+                        <h4 class="award-name">Seal of Excellence · Marie Skłodowska-Curie Actions</h4>
+                        <p class="award-desc">European Commission distinction for the project <em>"CubeSats in Autonomy for Asteroid Exploration with an Orbital Rapid Assessment"</em> (Politecnico di Milano, Prof. Francesco Topputo).</p>
+                    </div>
+                </div>
+
+                <!-- Fellowships & Grants -->
+                <h3 class="section-subtitle"><i class="ph ph-certificate"></i> Fellowships & Research Grants</h3>
+                <div class="awards-grid">
+                    <div class="award-card">
+                        <div class="award-year">2025 – 2027</div>
+                        <h4 class="award-name">CNPq Universal Call for Proposals</h4>
+                        <p class="award-desc">Principal investigator / researcher grant at the National Institute for Space Research (INPE).</p>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2022 – 2025</div>
+                        <h4 class="award-name">FAPESP Postdoctoral Fellowship</h4>
+                        <p class="award-desc">Competitive postdoctoral grant (~7% success rate) at UNIFESP.</p>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2018 – 2022</div>
+                        <h4 class="award-name">FAPESP Doctoral Fellowship</h4>
+                        <p class="award-desc">Full doctoral fellowship (~23% success rate) at INPE.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================
+                 3. OPERATIONS & RESEARCH FOCUS
+                 ============================================================ -->
+            <section id="operations" class="content-section">
+                <div class="section-header">
+                    <div class="section-pretitle"><i class="ph ph-rocket-launch"></i> Space Operations & Scientific Focus</div>
+                    <h2 class="section-title">Satellite Operations & Research</h2>
+                    <div class="section-accent-line"></div>
+                </div>
+
+                <!-- Satellite Fleet Banner -->
+                <div class="fleet-card">
+                    <h3 class="fleet-title"><i class="ph ph-satellite"></i> Operational Flight Dynamics Fleet at CCS / INPE</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+                        Directly responsible for mission-critical orbit determination, orbital maneuvers, telemetry analysis, pass predictions, and sensor calibration for Brazil's operational satellites:
+                    </p>
+                    <div class="satellite-badges-wrap">
+                        <div class="sat-badge"><i class="ph ph-planet"></i> <strong>SCD-1</strong> (Data Collection Satellite 1)</div>
+                        <div class="sat-badge"><i class="ph ph-planet"></i> <strong>SCD-2</strong> (Data Collection Satellite 2)</div>
+                        <div class="sat-badge"><i class="ph ph-camera"></i> <strong>CBERS-4</strong> (China-Brazil Earth Resources Satellite)</div>
+                        <div class="sat-badge"><i class="ph ph-camera"></i> <strong>CBERS-4A</strong> (Advanced Earth Observation)</div>
+                        <div class="sat-badge"><i class="ph ph-tree"></i> <strong>AMAZÔNIA-1 (AMZ-1)</strong> (1st Brazilian Multi-Mission Platform)</div>
+                    </div>
+                </div>
+
+                <!-- Research Areas Grid -->
+                <div class="research-cards-grid">
+                    <div class="research-card">
+                        <i class="ph ph-navigation-arrow research-card-icon"></i>
+                        <h3>Guidance, Navigation, & Control (GNC)</h3>
+                        <p>Autonomous path-following, robust feedback control, optical and landmark navigation for close-proximity operations around small bodies and asteroids.</p>
+                        <div class="research-tags">
+                            <span class="tech-tag">Robust Control</span>
+                            <span class="tech-tag">Path Following</span>
+                            <span class="tech-tag">Vision-Based Nav</span>
+                        </div>
+                    </div>
+
+                    <div class="research-card">
+                        <i class="ph ph-planet research-card-icon"></i>
+                        <h3>Astrodynamics & n-Body Problems</h3>
+                        <p>Formulation of the Circular Restricted n-Body Problem (CRNBP), Bicircular Restricted Four-Body Problem (BCR4BP), and high-precision gravity-assist dynamics.</p>
+                        <div class="research-tags">
+                            <span class="tech-tag">CRNBP</span>
+                            <span class="tech-tag">Gravity Assists</span>
+                            <span class="tech-tag">Trajectory Optimization</span>
+                        </div>
+                    </div>
+
+                    <div class="research-card">
+                        <i class="ph ph-shield-check research-card-icon"></i>
+                        <h3>Small-Body Missions & Planetary Defense</h3>
+                        <p>Trajectory design and deflection predictions for Near-Earth Asteroids (NEAs) including (99942) Apophis, triple asteroid 2001 SN263, and shallow-encounter dynamics.</p>
+                        <div class="research-tags">
+                            <span class="tech-tag">Apophis</span>
+                            <span class="tech-tag">2001 SN263</span>
+                            <span class="tech-tag">Asteroid Deflection</span>
+                        </div>
+                    </div>
+
+                    <div class="research-card">
+                        <i class="ph ph-code-block research-card-icon"></i>
+                        <h3>Flight Software & Systems Modernization</h3>
+                        <p>Bridging legacy VAX/DEC Fortran code to modern C++/Python, automating orbital mechanics pipelines, and adopting Consultative Committee for Space Data Systems (CCSDS) standards.</p>
+                        <div class="research-tags">
+                            <span class="tech-tag">C++20</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">CMake</span>
+                            <span class="tech-tag">CCSDS</span>
+                        </div>
+                    </div>
+
+                    <div class="research-card">
+                        <i class="ph ph-books research-card-icon"></i>
+                        <h3>History of Spaceflight & Astronautics</h3>
+                        <p>Historiographical research into early astronautical societies, the genesis of space institutions, and the internationalist roots of space exploration in Brazil.</p>
+                        <div class="research-tags">
+                            <span class="tech-tag">History of Science</span>
+                            <span class="tech-tag">SIB (1953)</span>
+                            <span class="tech-tag">GOCNAE / INPE</span>
+                        </div>
+                    </div>
+
+                    <div class="research-card">
+                        <i class="ph ph-robot research-card-icon"></i>
+                        <h3>Autonomous Spacecraft & Simulation</h3>
+                        <p>Simulating 6-DOF spacecraft dynamics with coupled attitude-orbit hardware-in-the-loop pipelines using Julia, Python, and Blender-rendered synthetic cameras.</p>
+                        <div class="research-tags">
+                            <span class="tech-tag">6-DOF</span>
+                            <span class="tech-tag">Julia</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">Blender</span>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Research Section -->
-            <section id="research" class="section">
+            <!-- ============================================================
+                 4. PUBLICATIONS SECTION
+                 ============================================================ -->
+            <section id="publications" class="content-section">
                 <div class="section-header">
-                    <h2>Research Interests</h2>
-                    <div class="divider"></div>
+                    <div class="section-pretitle"><i class="ph ph-book-open"></i> Scholarly Output & Links</div>
+                    <h2 class="section-title">Publications</h2>
+                    <div class="section-accent-line"></div>
                 </div>
-                <div class="research-grid">
-                    <div class="research-card">
-                        <i class="ph ph-compass"></i>
-                        <h3>Guidance, Navigation, & Control</h3>
-                        <p>Advanced control strategies, vision-based navigation, and robust systems.</p>
+
+                <!-- Featured Focus Spotlight: Sociedade Interplanetária Brasileira -->
+                <div class="featured-paper-box">
+                    <div class="featured-header-badge">
+                        <i class="ph ph-star"></i> Featured History of Science Publication (2026)
                     </div>
-                    <div class="research-card">
-                        <i class="ph ph-planet"></i>
-                        <h3>Astrodynamics</h3>
-                        <p>Orbital mechanics, trajectory optimization, and deep space mission design.</p>
+                    <h3 class="featured-paper-title">
+                        Sociedade Interplanetária Brasileira: O Internacionalismo da Exploração Espacial no Brasil
+                    </h3>
+                    <p class="featured-paper-meta">
+                        <strong>Rodolfo Batista Negri</strong> · <em>Revista Brasileira de História da Ciência (RBHC)</em>, v. 19, n. 1, 2026.
+                    </p>
+                    <div class="featured-paper-abstract">
+                        <strong>Abstract Highlights:</strong> This study reconstructs the historical significance of the <em>Sociedade Interplanetária Brasileira (SIB)</em>, founded in São Paulo in 1953. Operating as part of the post-WWII international astronautics movement and joining the International Astronautical Federation (IAF) in 1955, the SIB served as a crucial catalyst for Brazil's institutional space activities — culminating in the landmark letter to President Jânio Quadros that initiated the creation of the GOCNAE, the direct ancestor of today's National Institute for Space Research (INPE).
                     </div>
-                    <div class="research-card">
-                        <i class="ph ph-function"></i>
-                        <h3>Nonlinear Dynamics & Control</h3>
-                        <p>Mathematical modeling and control of complex dynamical systems.</p>
+                    <div class="pub-actions">
+                        <a href="https://doi.org/10.53727/rbhc.v19i1.1189" target="_blank" rel="noopener noreferrer" class="pub-btn doi-btn">
+                            <i class="ph ph-link"></i> DOI: 10.53727/rbhc.v19i1.1189
+                        </a>
+                        <a href="https://www.researchgate.net/publication/388277259_Sociedade_Interplanetaria_Brasileira_O_Internacionalismo_da_Exploracao_Espacial_no_Brasil" target="_blank" rel="noopener noreferrer" class="pub-btn">
+                            <i class="ph ph-article"></i> View on ResearchGate
+                        </a>
+                        <button class="pub-btn bibtex-btn" data-target="bib-sib-2026">
+                            <i class="ph ph-code"></i> Cite (BibTeX)
+                        </button>
                     </div>
-                    <div class="research-card">
-                        <i class="ph ph-robot"></i>
-                        <h3>Autonomous Vehicles & Robotics</h3>
-                        <p>Designing autonomy for spacecraft exploration in unknown environments.</p>
+                    <div id="bib-sib-2026" class="bibtex-box">
+                        <button class="copy-bibtex-btn" data-code-target="code-sib-2026"><i class="ph ph-copy"></i> Copy</button>
+                        <pre id="code-sib-2026" class="bibtex-code">@article{negri2026sib,
+  title={Sociedade Interplanet{\'a}ria Brasileira: O Internacionalismo da Explora{\c{c}}{\~a}o Espacial no Brasil},
+  author={Negri, Rodolfo Batista},
+  journal={Revista Brasileira de Hist{\'o}ria da Ci{\^e}ncia},
+  volume={19},
+  number={1},
+  year={2026},
+  doi={10.53727/rbhc.v19i1.1189}
+}</pre>
                     </div>
-                    <div class="research-card">
-                        <i class="ph ph-rocket-launch"></i>
-                        <h3>Space Mission Design</h3>
-                        <p>End-to-end planning and analysis for planetary and asteroid missions.</p>
-                    </div>
-                    <div class="research-card">
-                        <i class="ph ph-code"></i>
-                        <h3>Flight Software & Embedded Systems</h3>
-                        <p>Modernizing legacy code to CCSDS standards and C++/Python toolchains.</p>
-                    </div>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="pub-filter-container">
+                    <button class="filter-btn active" data-filter="all">All Works</button>
+                    <button class="filter-btn" data-filter="journal">Peer-Reviewed Journals (11)</button>
+                    <button class="filter-btn" data-filter="conference">Conference Papers</button>
+                    <button class="filter-btn" data-filter="history">History of Science</button>
+                </div>
+
+                <!-- Complete Publications Stream -->
+                <div class="publications-wrapper">
+
+                    <!-- Paper 1: SIB (2026) -->
+                    <article class="pub-card" data-category="journal" data-featured="history">
+                        <div class="pub-year-badge">2026</div>
+                        <div class="pub-details">
+                            <a href="https://doi.org/10.53727/rbhc.v19i1.1189" target="_blank" rel="noopener noreferrer" class="pub-title-link">
+                                Sociedade Interplanetária Brasileira: O Internacionalismo da Exploração Espacial no Brasil
+                            </a>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong></p>
+                            <p class="pub-venue">Revista Brasileira de História da Ciência, 19(1), 2026.</p>
+                            <div class="pub-actions">
+                                <a href="https://doi.org/10.53727/rbhc.v19i1.1189" target="_blank" rel="noopener noreferrer" class="pub-btn doi-btn"><i class="ph ph-link"></i> DOI: 10.53727/rbhc.v19i1.1189</a>
+                                <button class="pub-btn bibtex-btn" data-target="bib-1"><i class="ph ph-code"></i> BibTeX</button>
+                            </div>
+                            <div id="bib-1" class="bibtex-box">
+                                <button class="copy-bibtex-btn" data-code-target="code-1"><i class="ph ph-copy"></i> Copy</button>
+                                <pre id="code-1" class="bibtex-code">@article{negri2026sib,
+  title={Sociedade Interplanet{\'a}ria Brasileira: O Internacionalismo da Explora{\c{c}}{\~a}o Espacial no Brasil},
+  author={Negri, Rodolfo Batista},
+  journal={Revista Brasileira de Hist{\'o}ria da Ci{\^e}ncia},
+  volume={19},
+  number={1},
+  year={2026},
+  doi={10.53727/rbhc.v19i1.1189}
+}</pre>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Paper 2: Shallow Encounters (JGCD 2024) -->
+                    <article class="pub-card" data-category="journal">
+                        <div class="pub-year-badge">2024</div>
+                        <div class="pub-details">
+                            <a href="https://doi.org/10.2514/1.G007890" target="_blank" rel="noopener noreferrer" class="pub-title-link">
+                                Shallow Encounters’ Impact on Asteroid Deflection Prediction and Implications on Trajectory Design
+                            </a>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong>, &amp; Prado, A. F.</p>
+                            <p class="pub-venue">Journal of Guidance, Control, and Dynamics (JGCD), 47(7), 1341–1358, 2024.</p>
+                            <div class="pub-actions">
+                                <a href="https://doi.org/10.2514/1.G007890" target="_blank" rel="noopener noreferrer" class="pub-btn doi-btn"><i class="ph ph-link"></i> DOI: 10.2514/1.G007890</a>
+                                <a href="https://arxiv.org/abs/2308.04613" target="_blank" rel="noopener noreferrer" class="pub-btn"><i class="ph ph-file-text"></i> arXiv:2308.04613</a>
+                                <button class="pub-btn bibtex-btn" data-target="bib-2"><i class="ph ph-code"></i> BibTeX</button>
+                            </div>
+                            <div id="bib-2" class="bibtex-box">
+                                <button class="copy-bibtex-btn" data-code-target="code-2"><i class="ph ph-copy"></i> Copy</button>
+                                <pre id="code-2" class="bibtex-code">@article{negri2024shallow,
+  title={Shallow Encounters' Impact on Asteroid Deflection Prediction and Implications on Trajectory Design},
+  author={Negri, Rodolfo Batista and Prado, Antonio Fernando},
+  journal={Journal of Guidance, Control, and Dynamics},
+  volume={47},
+  number={7},
+  pages={1341--1358},
+  year={2024},
+  publisher={American Institute of Aeronautics and Astronautics},
+    doi={10.2514/1.G007890}
+}</pre>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Paper 3: Autonomous Rapid Exploration (JGCD 2024) -->
+                    <article class="pub-card" data-category="journal">
+                        <div class="pub-year-badge">2024</div>
+                        <div class="pub-details">
+                            <a href="https://doi.org/10.2514/1.G007186" target="_blank" rel="noopener noreferrer" class="pub-title-link">
+                                Autonomous Rapid Exploration in Close-Proximity of Asteroids
+                            </a>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong>, Prado, A. F., Chagas, R. A., &amp; Moraes, R. V.</p>
+                            <p class="pub-venue">Journal of Guidance, Control, and Dynamics (JGCD), 47(5), 914–933, 2024.</p>
+                            <div class="pub-actions">
+                                <a href="https://doi.org/10.2514/1.G007186" target="_blank" rel="noopener noreferrer" class="pub-btn doi-btn"><i class="ph ph-link"></i> DOI: 10.2514/1.G007186</a>
+                                <a href="https://arxiv.org/abs/2208.03378" target="_blank" rel="noopener noreferrer" class="pub-btn"><i class="ph ph-file-text"></i> arXiv:2208.03378</a>
+                                <button class="pub-btn bibtex-btn" data-target="bib-3"><i class="ph ph-code"></i> BibTeX</button>
+                            </div>
+                            <div id="bib-3" class="bibtex-box">
+                                <button class="copy-bibtex-btn" data-code-target="code-3"><i class="ph ph-copy"></i> Copy</button>
+                                <pre id="code-3" class="bibtex-code">@article{negri2024autonomous,
+  title={Autonomous Rapid Exploration in Close-Proximity of Asteroids},
+  author={Negri, Rodolfo Batista and Prado, Antonio Fernando and Chagas, Ronilson A and Moraes, Rodolpho Vilhena de},
+  journal={Journal of Guidance, Control, and Dynamics},
+  volume={47},
+  number={5},
+  pages={914--933},
+  year={2024},
+    doi={10.2514/1.G007186}
+}</pre>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Paper 4: Robust Path Following (JBSMSE 2024) -->
+                    <article class="pub-card" data-category="journal">
+                        <div class="pub-year-badge">2024</div>
+                        <div class="pub-details">
+                            <a href="https://doi.org/10.1007/s40430-024-05031-5" target="_blank" rel="noopener noreferrer" class="pub-title-link">
+                                Robust Path-Following for Keplerian Orbits
+                            </a>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong>, &amp; de Prado, A. F. B.</p>
+                            <p class="pub-venue">Journal of the Brazilian Society of Mechanical Sciences and Engineering, 46(8), 500, 2024.</p>
+                            <div class="pub-actions">
+                                <a href="https://doi.org/10.1007/s40430-024-05031-5" target="_blank" rel="noopener noreferrer" class="pub-btn doi-btn"><i class="ph ph-link"></i> DOI: 10.1007/s40430-024-05031-5</a>
+                                <a href="https://arxiv.org/abs/2012.01954" target="_blank" rel="noopener noreferrer" class="pub-btn"><i class="ph ph-file-text"></i> arXiv:2012.01954</a>
+                                <button class="pub-btn bibtex-btn" data-target="bib-4"><i class="ph ph-code"></i> BibTeX</button>
+                            </div>
+                            <div id="bib-4" class="bibtex-box">
+                                <button class="copy-bibtex-btn" data-code-target="code-4"><i class="ph ph-copy"></i> Copy</button>
+                                <pre id="code-4" class="bibtex-code">@article{negri2024robust,
+  title={Robust path-following for Keplerian orbits},
+  author={Negri, Rodolfo Batista and de Prado, Antonio Fernando Bertachini},
+  journal={Journal of the Brazilian Society of Mechanical Sciences and Engineering},
+  volume={46},
+  number={8},
+  pages={500},
+  year={2024},
+    doi={10.1007/s40430-024-05031-5}
+}</pre>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Paper 5: Autonomous and Robust Orbit-Keeping (JGCD 2022) -->
+                    <article class="pub-card" data-category="journal">
+                        <div class="pub-year-badge">2022</div>
+                        <div class="pub-details">
+                            <a href="https://doi.org/10.2514/1.G005863" target="_blank" rel="noopener noreferrer" class="pub-title-link">
+                                Autonomous and Robust Orbit-Keeping for Small-Body Missions
+                            </a>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong>, &amp; Prado, A. F. B. A.</p>
+                            <p class="pub-venue">Journal of Guidance, Control, and Dynamics (JGCD), 45(3), 1357–1365, 2022.</p>
+                            <div class="pub-actions">
+                                <a href="https://doi.org/10.2514/1.G005863" target="_blank" rel="noopener noreferrer" class="pub-btn doi-btn"><i class="ph ph-link"></i> DOI: 10.2514/1.G005863</a>
+                                <a href="https://arxiv.org/abs/2307.10901" target="_blank" rel="noopener noreferrer" class="pub-btn"><i class="ph ph-file-text"></i> arXiv:2307.10901</a>
+                                <button class="pub-btn bibtex-btn" data-target="bib-5"><i class="ph ph-code"></i> BibTeX</button>
+                            </div>
+                            <div id="bib-5" class="bibtex-box">
+                                <button class="copy-bibtex-btn" data-code-target="code-5"><i class="ph ph-copy"></i> Copy</button>
+                                <pre id="code-5" class="bibtex-code">@article{negri2022orbitkeeping,
+  title={Autonomous and Robust Orbit-Keeping for Small-Body Missions},
+  author={Negri, Rodolfo Batista and Prado, Antonio Fernando Bertachini de Almeida},
+  journal={Journal of Guidance, Control, and Dynamics},
+  volume={45},
+  number={3},
+  pages={1357--1365},
+  year={2022},
+    doi={10.2514/1.G005863}
+}</pre>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Paper 6: Circular Restricted n-Body Problem (JGCD 2022) -->
+                    <article class="pub-card" data-category="journal">
+                        <div class="pub-year-badge">2022</div>
+                        <div class="pub-details">
+                            <a href="https://doi.org/10.2514/1.G006430" target="_blank" rel="noopener noreferrer" class="pub-title-link">
+                                Circular Restricted n-Body Problem
+                            </a>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong>, &amp; Prado, A. F. B. A.</p>
+                            <p class="pub-venue">Journal of Guidance, Control, and Dynamics (JGCD), 45(7), 587–598, 2022.</p>
+                            <div class="pub-actions">
+                                <a href="https://doi.org/10.2514/1.G006430" target="_blank" rel="noopener noreferrer" class="pub-btn doi-btn"><i class="ph ph-link"></i> DOI: 10.2514/1.G006430</a>
+                                <a href="https://arxiv.org/abs/2307.10881" target="_blank" rel="noopener noreferrer" class="pub-btn"><i class="ph ph-file-text"></i> arXiv:2307.10881</a>
+                                <button class="pub-btn bibtex-btn" data-target="bib-6"><i class="ph ph-code"></i> BibTeX</button>
+                            </div>
+                            <div id="bib-6" class="bibtex-box">
+                                <button class="copy-bibtex-btn" data-code-target="code-6"><i class="ph ph-copy"></i> Copy</button>
+                                <pre id="code-6" class="bibtex-code">@article{negri2022crnbp,
+  title={Circular Restricted n-Body Problem},
+  author={Negri, Rodolfo Batista and Prado, Antonio Fernando Bertachini de Almeida},
+  journal={Journal of Guidance, Control, and Dynamics},
+  volume={45},
+  number={7},
+  pages={587--598},
+  year={2022},
+    doi={10.2514/1.G006430}
+}</pre>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Paper 7: Apophis Relative Motion (2021) -->
+                    <article class="pub-card" data-category="journal">
+                        <div class="pub-year-badge">2021</div>
+                        <div class="pub-details">
+                            <a href="http://www.astro.ro/~roaj/31_2/10_Aljbaae.pdf" target="_blank" rel="noopener noreferrer" class="pub-title-link">
+                                First Approximation for Spacecraft Motion Relative to (99942) Apophis
+                            </a>
+                            <p class="pub-authors">Aljbaae, S., Sanchez, D. M., Prado, A. F. B. A., Souchay, J., Terra, M. O., <strong>Negri, R. B.</strong>, &amp; Marchi, L.</p>
+                            <p class="pub-venue">Romanian Astronomical Journal, 31(2), 241–255, 2021.</p>
+                            <div class="pub-actions">
+                                <a href="http://www.astro.ro/~roaj/31_2/10_Aljbaae.pdf" target="_blank" rel="noopener noreferrer" class="pub-btn"><i class="ph ph-file-pdf"></i> View PDF</a>
+                                <button class="pub-btn bibtex-btn" data-target="bib-7"><i class="ph ph-code"></i> BibTeX</button>
+                            </div>
+                            <div id="bib-7" class="bibtex-box">
+                                <button class="copy-bibtex-btn" data-code-target="code-7"><i class="ph ph-copy"></i> Copy</button>
+                                <pre id="code-7" class="bibtex-code">@article{aljbaae2021apophis,
+  title={First Approximation for Spacecraft Motion Relative to (99942) Apophis},
+  author={Aljbaae, Safwan and Sanchez, Diogo M and Prado, Antonio FBA and Souchay, Jean and Terra, Marco O and Negri, Rodolfo B and Marchi, Luis},
+  journal={Romanian Astronomical Journal},
+  volume={31},
+  pages={241--255},
+  year={2021}
+}</pre>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Paper 8: Historical Gravity-Assists (JBSMSE 2020) -->
+                    <article class="pub-card" data-category="journal" data-featured="history">
+                        <div class="pub-year-badge">2020</div>
+                        <div class="pub-details">
+                            <a href="https://doi.org/10.1007/s40430-020-02489-x" target="_blank" rel="noopener noreferrer" class="pub-title-link">
+                                A Historical Review of the Theory of Gravity-Assists in the Pre-Spaceflight Era
+                            </a>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong>, &amp; de Almeida Prado, A. F. B.</p>
+                            <p class="pub-venue">Journal of the Brazilian Society of Mechanical Sciences and Engineering, 42(8), 406, 2020.</p>
+                            <div class="pub-actions">
+                                <a href="https://doi.org/10.1007/s40430-020-02489-x" target="_blank" rel="noopener noreferrer" class="pub-btn doi-btn"><i class="ph ph-link"></i> DOI: 10.1007/s40430-020-02489-x</a>
+                                <button class="pub-btn bibtex-btn" data-target="bib-8"><i class="ph ph-code"></i> BibTeX</button>
+                            </div>
+                            <div id="bib-8" class="bibtex-box">
+                                <button class="copy-bibtex-btn" data-code-target="code-8"><i class="ph ph-copy"></i> Copy</button>
+                                <pre id="code-8" class="bibtex-code">@article{negri2020historical,
+  title={A historical review of the theory of gravity-assists in the pre-spaceflight era},
+  author={Negri, Rodolfo Batista and de Almeida Prado, Antonio Fernando Bertachini},
+  journal={Journal of the Brazilian Society of Mechanical Sciences and Engineering},
+  volume={42},
+  number={8},
+  pages={406},
+  year={2020},
+  doi={10.1007/s40430-020-02489-x}
+}</pre>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Paper 9: Generalizing BCR4BP (JGCD 2020) -->
+                    <article class="pub-card" data-category="journal">
+                        <div class="pub-year-badge">2020</div>
+                        <div class="pub-details">
+                            <a href="https://doi.org/10.2514/1.G004848" target="_blank" rel="noopener noreferrer" class="pub-title-link">
+                                Generalizing the Bicircular Restricted Four-Body Problem
+                            </a>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong>, &amp; Prado, A. F.</p>
+                            <p class="pub-venue">Journal of Guidance, Control, and Dynamics (JGCD), 43(6), 1173–1179, 2020.</p>
+                            <div class="pub-actions">
+                                <a href="https://doi.org/10.2514/1.G004848" target="_blank" rel="noopener noreferrer" class="pub-btn doi-btn"><i class="ph ph-link"></i> DOI: 10.2514/1.G004848</a>
+                                <button class="pub-btn bibtex-btn" data-target="bib-9"><i class="ph ph-code"></i> BibTeX</button>
+                            </div>
+                            <div id="bib-9" class="bibtex-box">
+                                <button class="copy-bibtex-btn" data-code-target="code-9"><i class="ph ph-copy"></i> Copy</button>
+                                <pre id="code-9" class="bibtex-code">@article{negri2020bcr4bp,
+  title={Generalizing the Bicircular Restricted Four-Body Problem},
+  author={Negri, Rodolfo Batista and Prado, Antonio Fernando},
+  journal={Journal of Guidance, Control, and Dynamics},
+  volume={43},
+  number={6},
+  pages={1173--1179},
+  year={2020},
+    doi={10.2514/1.G004848}
+}</pre>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Paper 10: Lunar Gravity Assists (ASR 2019) -->
+                    <article class="pub-card" data-category="journal">
+                        <div class="pub-year-badge">2019</div>
+                        <div class="pub-details">
+                            <a href="https://doi.org/10.1016/j.asr.2019.04.002" target="_blank" rel="noopener noreferrer" class="pub-title-link">
+                                Lunar Gravity Assists Using Patched-Conics Approximation, Three and Four-Body Problems
+                            </a>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong>, Sukhanov, A., &amp; de Almeida Prado, A. F. B.</p>
+                            <p class="pub-venue">Advances in Space Research (ASR), 64(1), 42–63, 2019.</p>
+                            <div class="pub-actions">
+                                <a href="https://doi.org/10.1016/j.asr.2019.04.002" target="_blank" rel="noopener noreferrer" class="pub-btn doi-btn"><i class="ph ph-link"></i> DOI: 10.1016/j.asr.2019.04.002</a>
+                                <button class="pub-btn bibtex-btn" data-target="bib-10"><i class="ph ph-code"></i> BibTeX</button>
+                            </div>
+                            <div id="bib-10" class="bibtex-box">
+                                <button class="copy-bibtex-btn" data-code-target="code-10"><i class="ph ph-copy"></i> Copy</button>
+                                <pre id="code-10" class="bibtex-code">@article{negri2019lunar,
+  title={Lunar gravity assists using patched-conics approximation, three and four-body problems},
+  author={Negri, Rodolfo Batista and Sukhanov, Alexander and de Almeida Prado, Antonio Fernando Bertachini},
+  journal={Advances in Space Research},
+  volume={64},
+  number={1},
+  pages={42--63},
+  year={2019},
+    doi={10.1016/j.asr.2019.04.002}
+}</pre>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Paper 11: Errors in Patched Conics (CMDA 2017) -->
+                    <article class="pub-card" data-category="journal">
+                        <div class="pub-year-badge">2017</div>
+                        <div class="pub-details">
+                            <a href="https://doi.org/10.1007/s10569-017-9779-3" target="_blank" rel="noopener noreferrer" class="pub-title-link">
+                                Studying the Errors in the Estimation of the Variation of Energy by the "Patched-Conics" Model in the Three-Dimensional Swing-By
+                            </a>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong>, de Almeida Prado, A. F. B., &amp; Sukhanov, A.</p>
+                            <p class="pub-venue">Celestial Mechanics and Dynamical Astronomy (CMDA), 129(3), 269–284, 2017.</p>
+                            <div class="pub-actions">
+                                <a href="https://doi.org/10.1007/s10569-017-9779-3" target="_blank" rel="noopener noreferrer" class="pub-btn doi-btn"><i class="ph ph-link"></i> DOI: 10.1007/s10569-017-9779-3</a>
+                                <button class="pub-btn bibtex-btn" data-target="bib-11"><i class="ph ph-code"></i> BibTeX</button>
+                            </div>
+                            <div id="bib-11" class="bibtex-box">
+                                <button class="copy-bibtex-btn" data-code-target="code-11"><i class="ph ph-copy"></i> Copy</button>
+                                <pre id="code-11" class="bibtex-code">@article{negri2017patchedconics,
+  title={Studying the errors in the estimation of the variation of energy by the ``patched-conics'' model in the three-dimensional swing-by},
+  author={Negri, Rodolfo Batista and de Almeida Prado, Antonio Fernando Bertachini and Sukhanov, Alexander},
+  journal={Celestial Mechanics and Dynamical Astronomy},
+  volume={129},
+  number={3},
+  pages={269--284},
+  year={2017},
+    doi={10.1007/s10569-017-9779-3}
+}</pre>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Conference Paper: IAC Paris 2022 -->
+                    <article class="pub-card" data-category="conference">
+                        <div class="pub-year-badge">2022</div>
+                        <div class="pub-details">
+                            <span class="pub-title-link">Six DOF Analysis for Asteroid Autonomous Exploration</span>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong>, Prado, A. F., Chagas, R. A. J., Moraes, R. V.</p>
+                            <p class="pub-venue">73rd International Astronautical Congress (IAC 2022), Paris, France.</p>
+                            <div class="pub-actions">
+                                <a href="https://arxiv.org/abs/2208.03378" target="_blank" rel="noopener noreferrer" class="pub-btn"><i class="ph ph-file-text"></i> arXiv:2208.03378</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Conference Paper: ECC 2021 -->
+                    <article class="pub-card" data-category="conference">
+                        <div class="pub-year-badge">2021</div>
+                        <div class="pub-details">
+                            <a href="https://doi.org/10.23919/ECC54610.2021.9655106" target="_blank" rel="noopener noreferrer" class="pub-title-link">
+                                Orbit Keeping About the Martian Moons with a Robust Path Following Control
+                            </a>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong>, &amp; Prado, A. F.</p>
+                            <p class="pub-venue">European Control Conference (ECC 2021), IEEE Xplore, 2021.</p>
+                            <div class="pub-actions">
+                                <a href="https://doi.org/10.23919/ECC54610.2021.9655106" target="_blank" rel="noopener noreferrer" class="pub-btn doi-btn"><i class="ph ph-link"></i> DOI: 10.23919/ECC54610.2021.9655106</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Conference Paper: AAS/AIAA 2021 -->
+                    <article class="pub-card" data-category="conference">
+                        <div class="pub-year-badge">2021</div>
+                        <div class="pub-details">
+                            <a href="https://arxiv.org/abs/2307.06185" target="_blank" rel="noopener noreferrer" class="pub-title-link">
+                                Study on Autonomous Gravity-Assists with a Path Following Control
+                            </a>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong>, &amp; Prado, A. F.</p>
+                            <p class="pub-venue">31st AAS/AIAA Space Flight Mechanics Meeting, 2021.</p>
+                            <div class="pub-actions">
+                                <a href="https://arxiv.org/abs/2307.06185" target="_blank" rel="noopener noreferrer" class="pub-btn"><i class="ph ph-file-text"></i> arXiv:2307.06185</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Conference Paper: IAC Washington 2019 -->
+                    <article class="pub-card" data-category="conference">
+                        <div class="pub-year-badge">2019</div>
+                        <div class="pub-details">
+                            <span class="pub-title-link">Hovering Control of a Spacecraft in a Binary Asteroid</span>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong>, &amp; Prado, A. F.</p>
+                            <p class="pub-venue">70th International Astronautical Congress (IAC 2019), Washington, D.C., USA.</p>
+                        </div>
+                    </article>
+
+                    <!-- Conference Paper: IAC Bremen 2018 -->
+                    <article class="pub-card" data-category="conference">
+                        <div class="pub-year-badge">2018</div>
+                        <div class="pub-details">
+                            <span class="pub-title-link">Mapping Trajectories of an Asteroid That is Deflected by a Collision</span>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong>, Sarli, B., &amp; Prado, A. F.</p>
+                            <p class="pub-venue">69th International Astronautical Congress (IAC 2018), Bremen, Germany.</p>
+                        </div>
+                    </article>
+
+                    <!-- Conference Paper: COBEM 2017 -->
+                    <article class="pub-card" data-category="conference">
+                        <div class="pub-year-badge">2017</div>
+                        <div class="pub-details">
+                            <a href="https://doi.org/10.26678/ABCM.COBEM2017.COB17-0628" target="_blank" rel="noopener noreferrer" class="pub-title-link">
+                                A Study of the Errors in Swing-By Design by the 'Patched-Conics' Approach Applied to the Galilean Moons
+                            </a>
+                            <p class="pub-authors"><strong>Negri, R. B.</strong>, &amp; Prado, A. F.</p>
+                            <p class="pub-venue">24th ABCM International Congress of Mechanical Engineering (COBEM 2017), Curitiba, Brazil.</p>
+                            <div class="pub-actions">
+                                <a href="https://doi.org/10.26678/ABCM.COBEM2017.COB17-0628" target="_blank" rel="noopener noreferrer" class="pub-btn doi-btn"><i class="ph ph-link"></i> DOI: 10.26678/COB17-0628</a>
+                            </div>
+                        </div>
+                    </article>
+
                 </div>
             </section>
 
-            <!-- Publications Section -->
-            <section id="publications" class="section">
+            <!-- ============================================================
+                 5. TEACHING, MENTORING & SERVICE SECTION
+                 ============================================================ -->
+            <section id="teaching" class="content-section">
                 <div class="section-header">
-                    <h2>Publications</h2>
-                    <div class="divider"></div>
+                    <div class="section-pretitle"><i class="ph ph-chalkboard-teacher"></i> Academic Instruction & Community</div>
+                    <h2 class="section-title">Teaching & Service</h2>
+                    <div class="section-accent-line"></div>
                 </div>
-                <div class="publications-list">
-                    <h3 class="pub-type">Peer-Reviewed Journal Publications</h3>
-                    
-                    <div class="publication-item">
-                        <div class="pub-year">2026</div>
-                        <div class="pub-details">
-                            <h4 class="pub-title">Sociedade Interplanetária Brasileira: O Internacionalismo da Exploração Espacial no Brasil</h4>
-                            <p class="pub-authors">Negri, R. B.</p>
-                            <p class="pub-journal">Revista Brasileira de História da Ciência</p>
-                        </div>
-                    </div>
 
-                    <div class="publication-item">
-                        <div class="pub-year">2024</div>
-                        <div class="pub-details">
-                            <h4 class="pub-title">Shallow Encounters’ Impact on Asteroid Deflection Prediction and Implications on Trajectory Design</h4>
-                            <p class="pub-authors">Negri, R. B., & Prado, A. F.</p>
-                            <p class="pub-journal">Journal of Guidance, Control, and Dynamics, 47(7), 1341-1358.</p>
-                        </div>
-                    </div>
+                <!-- Courses List -->
+                <h3 class="section-subtitle"><i class="ph ph-book-bookmark"></i> University Courses</h3>
 
-                    <div class="publication-item">
-                        <div class="pub-year">2024</div>
-                        <div class="pub-details">
-                            <h4 class="pub-title">Autonomous Rapid Exploration in Close-Proximity of Asteroids</h4>
-                            <p class="pub-authors">Negri, R. B., Prado, A. F., Chagas, R. A., & Moraes, R. V.</p>
-                            <p class="pub-journal">Journal of Guidance, Control, and Dynamics, 47(5), 914-933.</p>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="pub-year">2024</div>
-                        <div class="pub-details">
-                            <h4 class="pub-title">Robust path-following for Keplerian orbits</h4>
-                            <p class="pub-authors">Negri, R. B., & de Prado, A. F. B.</p>
-                            <p class="pub-journal">Journal of the Brazilian Society of Mechanical Sciences and Engineering, 46(8), 500.</p>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="pub-year">2022</div>
-                        <div class="pub-details">
-                            <h4 class="pub-title">Autonomous and Robust Orbit-Keeping for Small-Body Missions</h4>
-                            <p class="pub-authors">Negri, R. B., & Prado, A. F. B. A.</p>
-                            <p class="pub-journal">Journal of Guidance, Control, and Dynamics, 45(3), 1357-1365.</p>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="pub-year">2022</div>
-                        <div class="pub-details">
-                            <h4 class="pub-title">Circular Restricted n-Body Problem</h4>
-                            <p class="pub-authors">Negri, R. B., & Prado, A. F. B. A.</p>
-                            <p class="pub-journal">Journal of Guidance, Control, and Dynamics, 45(7), 587-598.</p>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="pub-year">2021</div>
-                        <div class="pub-details">
-                            <h4 class="pub-title">First Approximation for Spacecraft Motion Relative to (99942) Apophis</h4>
-                            <p class="pub-authors">Aljbaae, S.; Sanchez, D. M.; Prado, A. F. B. A.; Souchay, J.; Terra, M. O.; Negri, R. B.; Marchi, L.</p>
-                            <p class="pub-journal">Romanian Astronomical Journal, 31, 241.</p>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="pub-year">2020</div>
-                        <div class="pub-details">
-                            <h4 class="pub-title">A historical review of the theory of gravity-assists in the pre-spaceflight era</h4>
-                            <p class="pub-authors">Negri, R. B., & de Almeida Prado, A. F. B.</p>
-                            <p class="pub-journal">Journal of the Brazilian Society of Mechanical Sciences and Engineering, 42(8), 1-10.</p>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="pub-year">2020</div>
-                        <div class="pub-details">
-                            <h4 class="pub-title">Generalizing the Bicircular Restricted Four-Body Problem</h4>
-                            <p class="pub-authors">Negri, R. B., & Prado, A. F.</p>
-                            <p class="pub-journal">Journal of Guidance, Control, and Dynamics, 43(6), 1173-1179.</p>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="pub-year">2019</div>
-                        <div class="pub-details">
-                            <h4 class="pub-title">Lunar gravity assists using patched-conics approximation, three and four-body problems</h4>
-                            <p class="pub-authors">Negri, R. B., Sukhanov, A., & de Almeida Prado, A. F. B.</p>
-                            <p class="pub-journal">Advances in Space Research, 64(1), 42-63.</p>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="pub-year">2017</div>
-                        <div class="pub-details">
-                            <h4 class="pub-title">Studying the errors in the estimation of the variation of energy by the “patched-conics” model in the three-dimensional swing-by</h4>
-                            <p class="pub-authors">Negri, R. B., de Almeida Prado, A. F. B., & Sukhanov, A.</p>
-                            <p class="pub-journal">Celestial Mechanics and Dynamical Astronomy, 129(3), 269-284.</p>
-                        </div>
-                    </div>
+                <!-- Upcoming: Navegação de Espaçonaves -->
+                <div class="teaching-card current-highlight">
+                    <span class="teaching-status-badge upcoming"><i class="ph ph-sparkle"></i> Upcoming / Current Course</span>
+                    <h4 class="teaching-course-title">Navegação de Espaçonaves (Spacecraft Navigation)</h4>
+                    <div class="teaching-institution">National Institute for Space Research (INPE) · Postgraduate Program (ETE/DMC)</div>
+                    <p class="teaching-description">
+                        Comprehensive graduate course on modern spacecraft navigation methodologies: orbit determination, filtering algorithms (Kalman, EKF, UKF), optical navigation in close-proximity exploration, celestial navigation, and sensor processing architectures.
+                    </p>
                 </div>
-            </section>
 
-            <!-- Teaching Section -->
-            <section id="teaching" class="section">
-                <div class="section-header">
-                    <h2>Teaching & Mentoring</h2>
-                    <div class="divider"></div>
+                <!-- Taught: Mecânica Celeste I -->
+                <div class="teaching-card">
+                    <span class="teaching-status-badge past">Taught Course</span>
+                    <h4 class="teaching-course-title">Mecânica Celeste I (Celestial Mechanics I)</h4>
+                    <div class="teaching-institution">Federal University of São Paulo (UNIFESP) · São José dos Campos</div>
+                    <p class="teaching-description">
+                        Classical orbital mechanics: the Two-Body Problem, orbital elements representation, Kepler's equation solution techniques, coordinate transformations, and introductory orbital perturbations.
+                    </p>
                 </div>
-                <div class="about-content">
-                    <h3 class="timeline-title">Teaching</h3>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Upcoming</div>
-                            <h4 class="timeline-degree">Professor, Navegação de Espaçonaves</h4>
-                            <p class="timeline-institution">National Institute for Space Research, São José dos Campos</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Past</div>
-                            <h4 class="timeline-degree">Professor, Mecânica Celeste I</h4>
-                            <p class="timeline-institution">Federal University of São Paulo, São José dos Campos</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Aug - Dec 2023</div>
-                            <h4 class="timeline-degree">Professor, Fundamentals of Astrodynamics</h4>
-                            <p class="timeline-institution">Federal University of São Paulo, São José dos Campos</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Aug - Oct 2021</div>
-                            <h4 class="timeline-degree">Professor, Engineering of Space Missions</h4>
-                            <p class="timeline-institution">National Institute for Space Research, São José dos Campos</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Jan - Jun 2020</div>
-                            <h4 class="timeline-degree">Teaching Assistant, Calculus II</h4>
-                            <p class="timeline-institution">São Paulo State University, Guaratinguetá</p>
-                        </div>
-                    </div>
-                    
-                    <h3 class="timeline-title" style="margin-top: 3rem;">Mentoring</h3>
-                    <ul style="color: var(--text-muted); margin-left: 1.5rem; margin-bottom: 2rem;">
-                        <li><strong>Shyenne Pinheiro</strong> (MS Student, exp. graduation Feb. 2026)</li>
+
+                <!-- Past Courses -->
+                <div class="teaching-card">
+                    <span class="teaching-status-badge past">Past Course (Aug – Dec 2023)</span>
+                    <h4 class="teaching-course-title">Fundamentals of Astrodynamics</h4>
+                    <div class="teaching-institution">Federal University of São Paulo (UNIFESP) · São José dos Campos</div>
+                    <p class="teaching-description">
+                        Core astrodynamics principles: orbital maneuvers, Hohmann and bi-elliptic transfers, interplanetary mission design, and patched-conics formulations.
+                    </p>
+                </div>
+
+                <div class="teaching-card">
+                    <span class="teaching-status-badge past">Past Course (Aug – Oct 2021)</span>
+                    <h4 class="teaching-course-title">Engineering of Space Missions</h4>
+                    <div class="teaching-institution">National Institute for Space Research (INPE) · São José dos Campos</div>
+                    <p class="teaching-description">
+                        End-to-end space mission design: payload requirements, launch vehicle selection, orbital lifetime analysis, ground segment architecture, and GNC integration.
+                    </p>
+                </div>
+
+                <div class="teaching-card">
+                    <span class="teaching-status-badge past">Teaching Assistant (Jan – Jun 2020)</span>
+                    <h4 class="teaching-course-title">Calculus II</h4>
+                    <div class="teaching-institution">São Paulo State University (UNESP) · Guaratinguetá</div>
+                    <p class="teaching-description">
+                        Multivariable calculus, partial derivatives, double and triple integrals, line and surface integrals, and vector field theorems.
+                    </p>
+                </div>
+
+                <!-- Student Mentoring -->
+                <h3 class="section-subtitle"><i class="ph ph-users-three"></i> Student Mentoring & Supervision</h3>
+                <div class="teaching-card">
+                    <h4 class="teaching-course-title">M.S. Degree Mentoring</h4>
+                    <ul style="padding-left: 1.25rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        <li><strong>Shyenne Pinheiro</strong> (Master's Student, expected graduation: February 2026). Research on orbital dynamics and trajectory optimization.</li>
                     </ul>
                 </div>
+
+                <!-- Invited Talks -->
+                <h3 class="section-subtitle"><i class="ph ph-microphone-stage"></i> Selected Invited Talks & Outreach</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date-tag">Feb 2026</div>
+                        <h4 class="timeline-role">INPE's Coordination of Satellite Tracking, Control and Reception</h4>
+                        <div class="timeline-org">31st Summer School on Orbital Mechanics and Planetary Sciences · UNESP</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date-tag">Oct 2025</div>
+                        <h4 class="timeline-role">Astrodynamics and GNC Research at INPE</h4>
+                        <div class="timeline-org">IV Workshop of the Graduate Program in Physics &amp; Astronomy · UNESP</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date-tag">Mar 2025 &amp; Dec 2024</div>
+                        <h4 class="timeline-role">Preliminary Design of Trajectories for Rendezvous with 2001 SN263</h4>
+                        <div class="timeline-org">UNESP GDOP &amp; XXII Brazilian Colloquium on Orbital Dynamics (CBDO), INPE</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date-tag">Sep 2023</div>
+                        <h4 class="timeline-role">Guidance, Navigation, and Control in Deep Space</h4>
+                        <div class="timeline-org">INPE Winter Course in Space Technology</div>
+                    </div>
+                </div>
+
+                <!-- Journal Reviewer & Service -->
+                <h3 class="section-subtitle"><i class="ph ph-check-square-offset"></i> Peer Reviewer Service</h3>
+                <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 0.75rem;">
+                    Active manuscript reviewer for leading international journals in aerospace engineering, guidance, control, and celestial mechanics:
+                </p>
+                <div class="journals-grid">
+                    <div class="journal-badge"><i class="ph ph-article"></i> Journal of Guidance, Control, and Dynamics (AIAA)</div>
+                    <div class="journal-badge"><i class="ph ph-article"></i> Acta Astronautica (Elsevier)</div>
+                    <div class="journal-badge"><i class="ph ph-article"></i> Advances in Space Research (COSPAR/Elsevier)</div>
+                    <div class="journal-badge"><i class="ph ph-article"></i> Celestial Mechanics &amp; Dynamical Astronomy (Springer)</div>
+                    <div class="journal-badge"><i class="ph ph-article"></i> IEEE Trans. on Aerospace &amp; Electronic Systems</div>
+                    <div class="journal-badge"><i class="ph ph-article"></i> Automatica (IFAC/Elsevier)</div>
+                    <div class="journal-badge"><i class="ph ph-article"></i> Astrodynamics (Springer)</div>
+                    <div class="journal-badge"><i class="ph ph-article"></i> Astrophysics and Space Science (Springer)</div>
+                    <div class="journal-badge"><i class="ph ph-article"></i> J. Brazilian Soc. Mechanical Sci. &amp; Eng. (Springer)</div>
+                    <div class="journal-badge"><i class="ph ph-article"></i> European Physical Journal - Special Topics</div>
+                    <div class="journal-badge"><i class="ph ph-article"></i> Anais da Academia Brasileira de Ciências</div>
+                    <div class="journal-badge"><i class="ph ph-article"></i> Int. J. of Mining, Reclamation and Env.</div>
+                </div>
             </section>
 
-            <!-- Contact Section -->
-            <section id="contact" class="section">
+            <!-- ============================================================
+                 6. CONTACT & LOCATION SECTION
+                 ============================================================ -->
+            <section id="contact" class="content-section">
                 <div class="section-header">
-                    <h2>Contact</h2>
-                    <div class="divider"></div>
+                    <div class="section-pretitle"><i class="ph ph-paper-plane-tilt"></i> Get in Touch</div>
+                    <h2 class="section-title">Contact & Location</h2>
+                    <div class="section-accent-line"></div>
                 </div>
-                <div class="contact-container">
+
+                <div class="contact-grid">
                     <div class="contact-card">
                         <i class="ph ph-envelope-simple"></i>
-                        <h3>Email</h3>
-                        <p>rodolfo.negri@inpe.br</p>
+                        <h3>Academic &amp; Industry Inquiries</h3>
+                        <p><a href="mailto:rodolfo.negri@inpe.br">rodolfo.negri@inpe.br</a><br>
+                            <a href="mailto:rodolfobnegri@yahoo.com.br">rodolfobnegri@yahoo.com.br</a></p>
                     </div>
+
                     <div class="contact-card">
-                        <i class="ph ph-map-pin"></i>
-                        <h3>Location</h3>
-                        <p>Satellite Control Center (CCS) - INPE<br>São José dos Campos, SP, Brazil</p>
+                        <i class="ph ph-buildings"></i>
+                        <h3>Office & Location</h3>
+                        <p>
+                            Office 125, CCS Building<br>
+                            Satellite Control Center (CCS) · INPE<br>
+                            Av. dos Astronautas, 1758, Jardim da Granja<br>
+                            São José dos Campos, SP, Brazil 12227-010
+                        </p>
                     </div>
+
                     <div class="contact-card">
-                        <i class="ph ph-identification-card"></i>
-                        <h3>ORCID</h3>
-                        <p>0000-0002-8196-8579</p>
+                        <i class="ph ph-phone-call"></i>
+                        <h3>Telephone</h3>
+                        <p><a href="tel:+5535991896191">+55 (35) 99189-6191</a></p>
+                    </div>
+
+                    <div class="contact-card">
+                        <i class="ph ph-globe"></i>
+                        <h3>Digital Profiles</h3>
+                        <p>
+                            LinkedIn: <a href="https://www.linkedin.com/in/rodolfobnegri/" target="_blank" rel="noopener noreferrer">rodolfobnegri</a><br>
+                            Google Scholar: <a href="https://scholar.google.com/citations?user=mf_cztYAAAAJ&amp;hl=pt-BR" target="_blank" rel="noopener noreferrer">profile</a><br>
+                            ORCID: <a href="https://orcid.org/0000-0002-8196-8579" target="_blank" rel="noopener noreferrer">0000-0002-8196-8579</a><br>
+                            WoS: <a href="https://www.webofscience.com/wos/author/record/AAE-5851-2019" target="_blank" rel="noopener noreferrer">AAE-5851-2019</a><br>
+                            Lattes: <a href="http://lattes.cnpq.br/3882772591605335" target="_blank" rel="noopener noreferrer">CNPq profile</a>
+                        </p>
                     </div>
                 </div>
+
+                <!-- CV Action Callout Card -->
+                <div class="cv-action-card">
+                    <div class="cv-action-info">
+                        <h3>Looking for my complete Curriculum Vitae?</h3>
+                        <p>Download the official PDF document covering complete academic records, project grants, and research trajectories.</p>
+                    </div>
+                    <a href="CV.pdf" target="_blank" download="Rodolfo_Batista_Negri_CV.pdf" class="btn-primary-gold" title="Download CV PDF">
+                        <i class="ph ph-download-simple"></i> Download CV.pdf
+                    </a>
+                </div>
             </section>
+
         </main>
     </div>
+
+    <!-- Toast Notification for BibTeX Copy -->
+    <div id="toast-notice" class="toast-notice">BibTeX copied to clipboard!</div>
 
     <!-- Scripts -->
     <script src="assets/js/main.js"></script>
