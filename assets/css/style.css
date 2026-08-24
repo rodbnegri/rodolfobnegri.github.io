@@ -3,15 +3,15 @@
    ========================================================================== */
 :root {
     /* Colors - Deep Space Theme */
-    --bg-color: #0b1120;
-    --bg-sidebar: #111827;
-    --bg-card: #1f2937;
+    --bg-color: #001f4d; /* Darker navy */
+    --bg-sidebar: #002a62; /* Main identity */
+    --bg-card: #00367c;
     --text-main: #f3f4f6;
-    --text-muted: #9ca3af;
-    --accent: #38bdf8;
-    --accent-hover: #0284c7;
-    --border: #374151;
-    --timeline-line: #4b5563;
+    --text-muted: #cbd5e1;
+    --accent: #df8600; /* Main identity */
+    --accent-hover: #ff9d00;
+    --border: #004296;
+    --timeline-line: #004296;
 
     /* Spacing & Layout */
     --sidebar-width: 300px;
@@ -22,10 +22,10 @@
     --bg-color: #f8fafc;
     --bg-sidebar: #ffffff;
     --bg-card: #ffffff;
-    --text-main: #0f172a;
+    --text-main: #002a62; /* Navy text */
     --text-muted: #475569;
-    --accent: #0ea5e9;
-    --accent-hover: #0284c7;
+    --accent: #df8600;
+    --accent-hover: #bf7300;
     --border: #e2e8f0;
     --timeline-line: #cbd5e1;
 }
