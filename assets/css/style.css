@@ -1,190 +1,306 @@
 /* ==========================================================================
-   Rodolfo Batista Negri - Personal Website Stylesheet
-   Brand Visual Identity: Deep Space Navy (#002a62) & Amber Gold (#df8600)
+   FILE: assets/css/style.css
+   ==========================================================================
+
+   WHAT IS CSS?
+   CSS (Cascading Style Sheets) is the language that controls HOW your
+   HTML elements LOOK: their colors, sizes, fonts, spacing, positioning,
+   and animations.
+
+   HOW CSS WORKS — THE BASIC RULE:
+   selector {
+       property: value;
+   }
+
+   - "selector"  → tells CSS WHICH HTML element(s) to style.
+                   Examples:
+                   .nav-link     = any element with class="nav-link"
+                   #theme-btn    = the element with id="theme-btn"
+                   body          = the <body> element itself
+                   h1, h2        = all <h1> AND <h2> elements
+
+   - "property"  → what aspect to style (color, font-size, padding…)
+   - "value"     → what to set it to (#fff, 16px, bold…)
+
+   THE "CASCADE" IN CSS:
+   Rules can overlap. When two rules apply to the same element, the
+   more specific one wins. If they're equal, the LAST one in the file wins.
+   That's the "cascade" — rules flow down, overwriting earlier ones.
+
+   WHAT IS VAR(--name)?
+   CSS Variables (also called Custom Properties) let us define a value
+   once and reuse it many times. They start with "--" and are called
+   with var(--variable-name).
+   Example:
+     :root { --brand-gold: #c47712; }
+     color: var(--brand-gold);  ← same as writing: color: #c47712;
+
+   WHY USE VARIABLES?
+   If you want to change the gold color everywhere, you only edit ONE line.
    ========================================================================== */
 
+
+/* ==========================================================================
+   CSS VARIABLES — Design Tokens
+   :root is a special selector that matches the <html> element.
+   Variables defined here are available EVERYWHERE in this CSS file.
+   ========================================================================== */
 :root {
-    /* Primary Brand Palette */
-    --brand-navy: #002a62;
-    --brand-navy-dark: #001838;
-    --brand-navy-light: #003e8f;
-    --brand-navy-subtle: #081e3d;
-    --brand-gold: #c47712;
-    --brand-gold-hover: #d89432;
-    --brand-gold-glow: rgba(196, 119, 18, 0.22);
-    --brand-gold-muted: rgba(196, 119, 18, 0.12);
+    /* ── Brand Colors ───────────────────────────────────────────────────── */
+    --brand-navy:        #002a62;   /* Deep navy blue — main brand color     */
+    --brand-navy-dark:   #001838;   /* Even darker navy for backgrounds      */
+    --brand-navy-light:  #003e8f;   /* Lighter navy for hover/accent states  */
+    --brand-navy-subtle: #081e3d;   /* Very dark navy for subtle backgrounds */
+    --brand-gold:        #c47712;   /* Amber gold — accent color throughout  */
+    --brand-gold-hover:  #d89432;   /* Slightly lighter gold for hover       */
+    /* rgba() = red, green, blue, alpha (transparency: 0=invisible, 1=opaque) */
+    --brand-gold-glow:   rgba(196, 119, 18, 0.22);  /* Gold with 22% opacity — used for glows/shadows */
+    --brand-gold-muted:  rgba(196, 119, 18, 0.12);  /* Gold with 12% opacity — very subtle tint       */
 
-    /* Dark Theme (Default) */
-    --bg-base: #050608;
-    --bg-surface: #090b0e;
-    --bg-surface-elevated: #101318;
-    --bg-sidebar: #07090c;
-    --bg-card: rgba(12, 15, 19, 0.88);
-    --bg-card-hover: rgba(18, 22, 28, 0.96);
-    --bg-input: #080a0d;
+    /* ── Dark Theme Backgrounds (DEFAULT theme) ─────────────────────────── */
+    --bg-base:             #050608;                     /* Page background (almost black)           */
+    --bg-surface:          #090b0e;                     /* Slightly lighter for cards/panels        */
+    --bg-surface-elevated: #101318;                     /* Even lighter — for "raised" UI elements  */
+    --bg-sidebar:          #07090c;                     /* Sidebar background                       */
+    --bg-card:             rgba(12, 15, 19, 0.88);      /* Semi-transparent card background         */
+    --bg-card-hover:       rgba(18, 22, 28, 0.96);      /* Card background when hovered             */
+    --bg-input:            #080a0d;                     /* Input / code block background            */
 
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --text-on-accent: #ffffff;
+    /* ── Dark Theme Text Colors ─────────────────────────────────────────── */
+    --text-primary:    #f8fafc;   /* Main text — near white                  */
+    --text-secondary:  #94a3b8;   /* Secondary text — medium gray            */
+    --text-muted:      #64748b;   /* Muted/hint text — darker gray           */
+    --text-on-accent:  #ffffff;   /* Text placed on gold/colored backgrounds */
 
-    --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-card: rgba(148, 163, 184, 0.16);
-    --border-focus: #c47712;
+    /* ── Borders ─────────────────────────────────────────────────────────── */
+    --border-subtle:  rgba(255, 255, 255, 0.08);   /* Very faint border (white @ 8%)   */
+    --border-card:    rgba(148, 163, 184, 0.16);   /* Slightly more visible card border */
+    --border-focus:   #c47712;                     /* Gold border for focused elements  */
 
-    --badge-bg: rgba(0, 42, 98, 0.85);
-    --badge-text: #e2e8f0;
-    --badge-border: rgba(0, 62, 143, 0.5);
+    /* ── Badge/Chip Colors ───────────────────────────────────────────────── */
+    --badge-bg:      rgba(0, 42, 98, 0.85);   /* Navy badge background  */
+    --badge-text:    #e2e8f0;                  /* Light text on badges   */
+    --badge-border:  rgba(0, 62, 143, 0.5);   /* Badge border color     */
 
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
-    --shadow-accent: 0 0 25px rgba(223, 134, 0, 0.25);
+    /* ── Shadows ─────────────────────────────────────────────────────────── */
+    /* box-shadow syntax: offset-x offset-y blur-radius color */
+    --shadow-sm:     0 2px 8px  rgba(0, 0, 0, 0.3);          /* Small shadow (e.g. small cards)   */
+    --shadow-md:     0 8px 24px rgba(0, 0, 0, 0.4);          /* Medium shadow (e.g. hover cards)  */
+    --shadow-lg:     0 16px 40px rgba(0, 0, 0, 0.5);         /* Large shadow (e.g. modals)        */
+    --shadow-accent: 0 0 25px  rgba(223, 134, 0, 0.25);      /* Gold glow shadow                  */
 
-    /* Layout & Geometry */
-    --sidebar-width: 320px;
-    --border-radius-sm: 8px;
-    --border-radius-md: 14px;
-    --border-radius-lg: 20px;
-    --border-radius-full: 9999px;
+    /* ── Layout & Geometry ───────────────────────────────────────────────── */
+    --sidebar-width:       320px;   /* Width of the left sidebar panel          */
+    --border-radius-sm:    8px;     /* Slightly rounded corners (e.g. buttons)  */
+    --border-radius-md:    14px;    /* Medium rounding (e.g. cards)             */
+    --border-radius-lg:    20px;    /* Very rounded (e.g. feature cards)        */
+    --border-radius-full:  9999px;  /* Fully rounded = pill shape               */
+
+    /* ── Transition ──────────────────────────────────────────────────────── */
+    /* transition: property duration timing-function
+       "all"  = animate ALL changing properties
+       0.25s  = animation takes 0.25 seconds
+       cubic-bezier(0.4,0,0.2,1) = a smooth ease-in-out curve (Material Design standard) */
     --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-[data-theme="light"] {
-    --bg-base: #f1f5f9;
-    --bg-surface: #ffffff;
-    --bg-surface-elevated: #f8fafc;
-    --bg-sidebar: #ffffff;
-    --bg-card: rgba(255, 255, 255, 0.9);
-    --bg-card-hover: #ffffff;
-    --bg-input: #f1f5f9;
-
-    --text-primary: #002a62;
-    --text-secondary: #334155;
-    --text-muted: #64748b;
-    --text-on-accent: #ffffff;
-
-    --border-subtle: rgba(0, 42, 98, 0.1);
-    --border-card: rgba(0, 42, 98, 0.15);
-    --border-focus: #c47712;
-
-    --badge-bg: rgba(0, 42, 98, 0.07);
-    --badge-text: #002a62;
-    --badge-border: rgba(0, 42, 98, 0.18);
-
-    --shadow-sm: 0 2px 6px rgba(0, 42, 98, 0.06);
-    --shadow-md: 0 8px 20px rgba(0, 42, 98, 0.08);
-    --shadow-lg: 0 16px 36px rgba(0, 42, 98, 0.12);
-    --shadow-accent: 0 0 20px rgba(223, 134, 0, 0.2);
-}
 
 /* ==========================================================================
-   CSS Reset & Base Typography
+   LIGHT THEME OVERRIDES
+   [data-theme="light"] is an attribute selector:
+   it matches <body data-theme="light">.
+   JavaScript adds/removes this attribute when the theme button is clicked.
+   Variables defined here OVERRIDE the :root ones ONLY when in light mode.
    ========================================================================== */
+[data-theme="light"] {
+    /* Light mode backgrounds — near white instead of near black */
+    --bg-base:             #f1f5f9;
+    --bg-surface:          #ffffff;
+    --bg-surface-elevated: #f8fafc;
+    --bg-sidebar:          #ffffff;
+    --bg-card:             rgba(255, 255, 255, 0.9);
+    --bg-card-hover:       #ffffff;
+    --bg-input:            #f1f5f9;
+
+    /* Light mode text — dark navy instead of near white */
+    --text-primary:   #002a62;
+    --text-secondary: #334155;
+    --text-muted:     #64748b;
+    --text-on-accent: #ffffff;
+
+    /* Lighter, more subtle borders for light theme */
+    --border-subtle: rgba(0, 42, 98, 0.1);
+    --border-card:   rgba(0, 42, 98, 0.15);
+    --border-focus:  #c47712;
+
+    /* Badge styles for light theme */
+    --badge-bg:     rgba(0, 42, 98, 0.07);
+    --badge-text:   #002a62;
+    --badge-border: rgba(0, 42, 98, 0.18);
+
+    /* Softer shadows for light theme (dark shadows would look odd on white) */
+    --shadow-sm:     0 2px 6px  rgba(0, 42, 98, 0.06);
+    --shadow-md:     0 8px 20px rgba(0, 42, 98, 0.08);
+    --shadow-lg:     0 16px 36px rgba(0, 42, 98, 0.12);
+    --shadow-accent: 0 0 20px  rgba(223, 134, 0, 0.2);
+}
+
+
+/* ==========================================================================
+   CSS RESET & BASE STYLES
+   A "reset" removes browser defaults so our design is consistent
+   across Chrome, Firefox, Safari, Edge, etc.
+   ========================================================================== */
+
+/* Universal selector: applies to EVERY element and its pseudo-elements.
+   ::before and ::after are virtual elements added before/after content. */
 *, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0;           /* Remove all default margins (browsers add them by default) */
+    padding: 0;          /* Remove all default padding */
+    box-sizing: border-box; /* Make padding/border included in width/height calculations.
+                               By default, width:100px + padding:10px = 110px total.
+                               border-box makes it stay 100px total. Much more intuitive! */
 }
 
 html {
-    scroll-behavior: smooth;
-    font-size: 16px;
+    scroll-behavior: smooth;  /* Smooth scrolling animation when jumping to #anchors */
+    font-size: 16px;          /* Base font size. "1rem" = this value = 16px.
+                                  rem is better than px because it scales with browser
+                                  accessibility settings. */
 }
 
 body {
+    /* Font stack: tries fonts left to right, uses first one found.
+       -apple-system / BlinkMacSystemFont = system fonts on Mac/iOS (looks native).
+       "Segoe UI" = Windows default. Roboto = Android/Google.
+       sans-serif = generic fallback (no serifs = cleaner on screen). */
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: var(--bg-base);
-    color: var(--text-primary);
-    line-height: 1.65;
-    overflow-x: hidden;
+
+    background-color: var(--bg-base);   /* Page background color         */
+    color: var(--text-primary);         /* Default text color             */
+    line-height: 1.65;                  /* Space between lines of text.
+                                           1.65 = 65% extra space between lines.
+                                           1.0 would be very cramped. */
+    overflow-x: hidden;                 /* Prevent horizontal scrollbar if anything
+                                           accidentally extends beyond the page width */
+    /* Animate color changes when theme toggles */
     transition: background-color 0.3s ease, color 0.3s ease;
-    position: relative;
-    min-height: 100vh;
+    position: relative;                 /* Needed so z-index works on children */
+    min-height: 100vh;                  /* vh = viewport height. 100vh = full screen height.
+                                           min-height ensures body covers full screen even
+                                           if there's little content. */
 }
 
+/* Heading styles (h1 through h6) — shared rules using comma-separated selector */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Outfit', 'Inter', sans-serif;
+    font-family: 'Outfit', 'Inter', sans-serif; /* Headings use Outfit font for personality */
     color: var(--text-primary);
-    font-weight: 700;
-    line-height: 1.25;
-    letter-spacing: -0.015em;
+    font-weight: 700;             /* Bold text (400=normal, 700=bold, 900=black) */
+    line-height: 1.25;            /* Tighter line height for large headings      */
+    letter-spacing: -0.015em;     /* em = relative to current font size.
+                                     Negative = letters slightly closer together.
+                                     Makes large text look more refined/tight. */
 }
 
+/* Default anchor (link) styles */
 a {
-    color: var(--brand-gold);
-    text-decoration: none;
-    transition: var(--transition-smooth);
+    color: var(--brand-gold);         /* Links are gold by default                  */
+    text-decoration: none;            /* Remove underline (we add our own styles)   */
+    transition: var(--transition-smooth); /* Smooth color change on hover           */
 }
 
 a:hover {
-    color: var(--brand-gold-hover);
+    color: var(--brand-gold-hover);   /* Slightly lighter gold when hovering        */
 }
 
+/* Button base reset */
 button {
-    font-family: inherit;
-    cursor: pointer;
+    font-family: inherit; /* Buttons have their own font by default; use body font instead */
+    cursor: pointer;      /* Show hand cursor on hover (default is usually arrow) */
 }
 
-/* Starfield / Orbital Animation Canvas */
+
+/* ==========================================================================
+   STARFIELD CANVAS
+   The animated star background. It is positioned FIXED (stays in place while
+   you scroll) and behind everything else (z-index: 0).
+   ========================================================================== */
 #space-canvas {
-    position: fixed;
+    position: fixed;       /* Fixed = stays in viewport regardless of scrolling */
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.65;
-    transition: opacity 0.3s ease;
+    width: 100vw;          /* vw = viewport width. 100vw = full screen width    */
+    height: 100vh;         /* vh = viewport height. 100vh = full screen height  */
+    pointer-events: none;  /* IMPORTANT: let clicks "pass through" to elements below.
+                              Without this, the canvas would block all clicks!   */
+    z-index: 0;            /* z-index = stack order. 0 = behind other elements.
+                              Higher z-index = on top. Think of it as layers.   */
+    opacity: 0.65;         /* Slightly transparent so it doesn't overwhelm the content */
+    transition: opacity 0.3s ease; /* Smoothly change opacity when theme changes */
 }
 
+/* In light mode, the star canvas is much more subtle */
 [data-theme="light"] #space-canvas {
     opacity: 0.2;
 }
 
+
 /* ==========================================================================
-   Layout Hierarchy
+   LAYOUT STRUCTURE
+   The page uses a two-column layout:
+   [Sidebar | Main Content]
+   This is achieved with CSS Flexbox.
+
+   FLEXBOX EXPLAINED:
+   display: flex makes children ("flex items") line up in a row or column.
+   By default, children line up in a row (left to right).
    ========================================================================== */
 .layout-container {
-    display: flex;
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
+    display: flex;           /* Children (sidebar + main) sit side by side    */
+    position: relative;      /* So z-index on children works                  */
+    z-index: 1;              /* Above the canvas (z-index:0)                  */
+    min-height: 100vh;       /* Full screen tall                              */
 }
 
-/* Mobile Toggle Header */
+
+/* ==========================================================================
+   MOBILE TOP BAR
+   Shown ONLY on small screens (mobile/tablet). On desktop it's hidden.
+   On mobile, the sidebar collapses off-screen, and this header shows instead.
+   ========================================================================== */
 .mobile-topbar {
-    display: none;
-    position: fixed;
+    display: none;           /* Hidden by default. The @media query below shows it. */
+    position: fixed;         /* Sticks to the top while scrolling                  */
     top: 0;
     left: 0;
-    right: 0;
+    right: 0;                /* Stretch from left edge to right edge               */
     height: 64px;
     background: var(--bg-surface);
     border-bottom: 1px solid var(--border-subtle);
-    padding: 0 1.25rem;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1000;
-    backdrop-filter: blur(12px);
+    padding: 0 1.25rem;      /* 0 top/bottom, 1.25rem left/right. rem = relative em */
+    align-items: center;     /* Vertically center children in the 64px bar         */
+    justify-content: space-between; /* Space logo to left, button to right         */
+    z-index: 1000;           /* Very high z-index so it stays on top of everything */
+    backdrop-filter: blur(12px); /* Frosted glass blur effect on content behind the bar */
 }
 
 .mobile-brand {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.75rem;  /* Space between the planet icon and the name text */
 }
 
+/* The name text inside the mobile brand */
 .mobile-brand .name {
     font-size: 1.05rem;
     font-weight: 700;
 }
 
+/* The hamburger menu (☰) button */
 .mobile-nav-toggle {
-    background: none;
-    border: none;
-    font-size: 1.6rem;
+    background: none;         /* No background box around the button */
+    border: none;             /* No border                           */
+    font-size: 1.6rem;        /* Large icon                          */
     color: var(--text-primary);
     display: flex;
     align-items: center;
@@ -192,68 +308,81 @@ button {
     padding: 0.5rem;
 }
 
+
 /* ==========================================================================
-   Sidebar Navigation
+   SIDEBAR NAVIGATION
+   The fixed left panel (320px wide on desktop) containing the profile card,
+   navigation links, social links, and footer buttons.
    ========================================================================== */
 .sidebar {
-    width: var(--sidebar-width);
-    height: 100vh;
-    position: fixed;
+    width: var(--sidebar-width);  /* 320px — defined in :root                     */
+    height: 100vh;                /* Full viewport height                          */
+    position: fixed;              /* Stays in place while the right side scrolls   */
     top: 0;
     left: 0;
     background: var(--bg-sidebar);
-    border-right: 1px solid var(--border-subtle);
+    border-right: 1px solid var(--border-subtle);  /* Thin dividing line           */
     display: flex;
-    flex-direction: column;
-    z-index: 500;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--brand-navy-light) transparent;
+    flex-direction: column;       /* Stack children vertically (profile, nav, etc) */
+    z-index: 500;                 /* Above content but below mobile topbar (z:1000) */
+    overflow-y: auto;             /* Add vertical scroll if content overflows       */
+    scrollbar-width: thin;        /* Thinner scrollbar in Firefox                  */
+    scrollbar-color: var(--brand-navy-light) transparent; /* Firefox scrollbar color */
+    /* Animated slide-in for mobile (transform changes on mobile toggle) */
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);  /* Frosted glass effect                          */
 }
 
+/* Custom scrollbar styles for Chrome/Safari/Edge (webkit browsers) */
 .sidebar::-webkit-scrollbar {
-    width: 5px;
+    width: 5px; /* Width of the scrollbar track */
 }
 .sidebar::-webkit-scrollbar-thumb {
-    background: var(--brand-navy-light);
+    background: var(--brand-navy-light); /* The draggable bar color */
     border-radius: 4px;
 }
 
-/* Profile Card in Sidebar */
+
+/* ==========================================================================
+   PROFILE CARD (top of sidebar)
+   Shows avatar photo, name, tagline, institution.
+   ========================================================================== */
 .profile-card {
-    padding: 2.25rem 1.75rem 1.25rem;
-    text-align: center;
+    padding: 2.25rem 1.75rem 1.25rem; /* top right bottom (left defaults to right value) */
+    text-align: center;               /* Center all text/images horizontally */
     border-bottom: 1px solid var(--border-subtle);
-    position: relative;
+    position: relative;               /* For absolute positioning of badge   */
 }
 
+/* Wrapper that positions the satellite badge over the avatar corner */
 .profile-avatar-wrap {
-    position: relative;
+    position: relative;               /* Parent for the absolutely-positioned badge */
     width: 130px;
     height: 130px;
-    margin: 0 auto 1.25rem;
+    margin: 0 auto 1.25rem;           /* 0 top, auto left/right (centers it), 1.25rem bottom */
 }
 
+/* The circular profile photo */
 .profile-avatar {
-    width: 100%;
+    width: 100%;    /* Fill the 130px × 130px wrapper */
     height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--brand-gold);
-    box-shadow: 0 0 20px var(--brand-gold-glow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: var(--brand-navy);
+    border-radius: 50%;            /* Makes the square image perfectly circular */
+    object-fit: cover;             /* Crop the image to fill the circle without distortion */
+    border: 3px solid var(--brand-gold);                 /* Gold circular border */
+    box-shadow: 0 0 20px var(--brand-gold-glow);         /* Glowing aura effect  */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect  */
+    background-color: var(--brand-navy);                 /* Placeholder while loading */
 }
 
+/* Scale and glow the photo when hovering */
 .profile-avatar:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 28px var(--brand-gold-hover);
+    transform: scale(1.03);                          /* Slightly grow the image    */
+    box-shadow: 0 0 28px var(--brand-gold-hover);    /* Stronger glow on hover     */
 }
 
+/* The small satellite icon badge overlaid at the bottom-right of the avatar */
 .status-orbit-badge {
-    position: absolute;
+    position: absolute;   /* Positioned relative to .profile-avatar-wrap */
     bottom: 2px;
     right: 2px;
     background: var(--brand-navy);
@@ -261,7 +390,7 @@ button {
     color: var(--brand-gold);
     width: 28px;
     height: 28px;
-    border-radius: 50%;
+    border-radius: 50%;   /* Circular badge */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -281,7 +410,7 @@ button {
     color: var(--brand-gold);
     font-weight: 600;
     margin-bottom: 0.5rem;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.02em;   /* Slight spacing between letters for readability */
 }
 
 .profile-institution {
@@ -294,58 +423,68 @@ button {
     gap: 0.35rem;
 }
 
-/* Nav Links */
+
+/* ==========================================================================
+   NAVIGATION MENU (sidebar links)
+   ========================================================================== */
 .nav-menu {
-    list-style: none;
+    list-style: none;       /* Remove bullet points from <ul> */
     padding: 1.25rem 0.85rem;
-    flex-grow: 1;
+    flex-grow: 1;           /* Expand to fill available space in the flex column */
 }
 
 .nav-item {
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.35rem; /* Small gap between each nav item */
 }
 
+/* Each navigation link */
 .nav-link {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
+    display: flex;          /* Flex so icon and text align horizontally */
+    align-items: center;    /* Vertically center icon and text          */
+    gap: 0.85rem;           /* Space between icon and text              */
     padding: 0.75rem 1rem;
-    border-radius: var(--border-radius-md);
+    border-radius: var(--border-radius-md);  /* Rounded corners        */
     color: var(--text-secondary);
     font-size: 0.93rem;
     font-weight: 600;
-    transition: var(--transition-smooth);
-    border: 1px solid transparent;
+    transition: var(--transition-smooth);    /* Smooth hover transition */
+    border: 1px solid transparent;          /* Invisible border that becomes visible on hover */
 }
 
 .nav-link i {
-    font-size: 1.25rem;
+    font-size: 1.25rem;           /* Icon size  */
     color: var(--text-muted);
     transition: var(--transition-smooth);
 }
 
+/* Hover state — when mouse is over the link */
 .nav-link:hover {
     color: var(--text-primary);
-    background: rgba(0, 42, 98, 0.4);
-    border-color: rgba(223, 134, 0, 0.2);
+    background: rgba(0, 42, 98, 0.4);         /* Semi-transparent navy background */
+    border-color: rgba(223, 134, 0, 0.2);     /* Subtle gold border                */
 }
 
 .nav-link:hover i {
-    color: var(--brand-gold);
+    color: var(--brand-gold); /* Icon turns gold on hover */
 }
 
+/* Active state — added by JavaScript to highlight the current section's link */
 .nav-link.active {
     color: #ffffff;
+    /* linear-gradient(angle, color1, color2) = gradient from left to right */
     background: linear-gradient(135deg, var(--brand-navy) 0%, var(--brand-navy-light) 100%);
-    border-color: var(--brand-gold);
+    border-color: var(--brand-gold);          /* Visible gold border    */
     box-shadow: 0 4px 14px rgba(0, 42, 98, 0.4);
 }
 
 .nav-link.active i {
-    color: var(--brand-gold);
+    color: var(--brand-gold); /* Gold icon when active */
 }
 
-/* Sidebar Social Grid */
+
+/* ==========================================================================
+   SIDEBAR SOCIAL ICONS
+   ========================================================================== */
 .sidebar-social {
     padding: 1.25rem 1.5rem;
     border-top: 1px solid var(--border-subtle);
@@ -353,21 +492,23 @@ button {
 
 .social-title {
     font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    text-transform: uppercase;   /* ALL CAPS the text */
+    letter-spacing: 0.08em;      /* Extra spacing between letters */
     color: var(--text-muted);
     font-weight: 700;
     margin-bottom: 0.75rem;
     text-align: center;
 }
 
+/* Flexbox row of icon buttons, wrapping when needed */
 .social-icons-grid {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;       /* Wrap to next row if not enough space */
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.5rem;           /* Space between each icon button       */
 }
 
+/* Each square icon button */
 .social-btn {
     width: 36px;
     height: 36px;
@@ -382,24 +523,29 @@ button {
     transition: var(--transition-smooth);
 }
 
+/* Hover: lift up, turn navy with gold border */
 .social-btn:hover {
     color: #ffffff;
     background: var(--brand-navy);
     border-color: var(--brand-gold);
-    transform: translateY(-2px);
+    transform: translateY(-2px);   /* Move 2px upward = "lift" effect */
     box-shadow: var(--shadow-sm);
 }
 
-/* Theme Toggle & Bottom Actions */
+
+/* ==========================================================================
+   SIDEBAR FOOTER (theme toggle + CV link)
+   ========================================================================== */
 .sidebar-footer {
     padding: 1rem 1.5rem;
     border-top: 1px solid var(--border-subtle);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between;  /* Toggle left, CV link right */
     background: rgba(0, 0, 0, 0.1);
 }
 
+/* Pill-shaped theme toggle button */
 .theme-toggle-btn {
     display: flex;
     align-items: center;
@@ -408,7 +554,7 @@ button {
     border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
     padding: 0.5rem 0.85rem;
-    border-radius: var(--border-radius-full);
+    border-radius: var(--border-radius-full);  /* Full pill shape */
     font-size: 0.85rem;
     font-weight: 600;
     transition: var(--transition-smooth);
@@ -419,6 +565,7 @@ button {
     border-color: var(--brand-gold);
 }
 
+/* CV download link in footer */
 .cv-mini-link {
     font-size: 0.85rem;
     font-weight: 600;
@@ -432,37 +579,52 @@ button {
     text-decoration: underline;
 }
 
+
 /* ==========================================================================
-   Main Content Area
+   MAIN CONTENT AREA
+   The right-side panel that holds all sections.
+   margin-left pushes it to the right of the fixed sidebar.
    ========================================================================== */
 .main-content {
-    flex-grow: 1;
-    margin-left: var(--sidebar-width);
-    padding: 3.5rem 5% 5rem 6%;
+    flex-grow: 1;                    /* Take up all remaining horizontal space */
+    margin-left: var(--sidebar-width); /* 320px — leave room for the fixed sidebar */
+    padding: 3.5rem 5% 5rem 6%;      /* top | right | bottom | left */
     position: relative;
-    max-width: 1400px;
+    max-width: 1400px;               /* Don't stretch too wide on ultra-wide monitors */
     min-height: 100vh;
 }
 
+
+/* ==========================================================================
+   SECTION VISIBILITY
+   Each section is hidden by default. JavaScript adds "active" to show one.
+   ========================================================================== */
 .content-section {
-    display: none;
-    opacity: 0;
-    transform: translateY(12px);
+    display: none;           /* Hidden by default                                 */
+    opacity: 0;              /* Also transparent (for the fade-in animation)      */
+    transform: translateY(12px); /* Slightly below final position (slide-in)     */
+    /* Animate opacity and position when "active" class is added                  */
     transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
+/* When JavaScript adds "active" class, the section becomes visible */
 .content-section.active {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
+    display: block;          /* Show the section                                  */
+    opacity: 1;              /* Fully visible                                     */
+    transform: translateY(0); /* Back to normal position (slides up into view)   */
 }
 
-/* Section Header */
+
+/* ==========================================================================
+   SECTION HEADER (used at the top of each section)
+   Contains a small pre-title label, main title h2, and decorative line.
+   ========================================================================== */
 .section-header {
     margin-bottom: 2.75rem;
     position: relative;
 }
 
+/* Small uppercase label above the main section title (e.g., "Background & Track Record") */
 .section-pretitle {
     font-size: 0.82rem;
     text-transform: uppercase;
@@ -475,6 +637,7 @@ button {
     gap: 0.5rem;
 }
 
+/* The large section heading */
 .section-title {
     font-size: 2.35rem;
     font-weight: 800;
@@ -482,28 +645,33 @@ button {
     margin-bottom: 0.75rem;
 }
 
+/* The decorative gold gradient line under the section title */
 .section-accent-line {
     width: 64px;
     height: 4px;
+    /* linear-gradient from gold to transparent = fades out to the right */
     background: linear-gradient(90deg, var(--brand-gold) 0%, transparent 100%);
     border-radius: 2px;
 }
 
+
 /* ==========================================================================
-   Hero & Home Section
+   HERO / HOME SECTION
+   The first visible section with the main greeting, bio, buttons, and stats.
    ========================================================================== */
 .hero-wrapper {
-    max-width: 980px;
+    max-width: 980px;   /* Limit width for readability (very long lines are hard to read) */
     padding-top: 1.5rem;
 }
 
+/* Research identity strip — a small card with profile links */
 .identity-strip {
     max-width: 980px;
     margin: 2rem 0 2.75rem;
     padding: 1.15rem 1.35rem;
-    background: rgba(0, 42, 98, 0.22);
-    border: 1px solid rgba(223, 134, 0, 0.3);
-    border-left: 3px solid var(--brand-gold);
+    background: rgba(0, 42, 98, 0.22);                /* Dark navy tint               */
+    border: 1px solid rgba(223, 134, 0, 0.3);         /* Semi-transparent gold border */
+    border-left: 3px solid var(--brand-gold);          /* Thicker gold left accent     */
 }
 
 .identity-strip-heading {
@@ -517,12 +685,13 @@ button {
     text-transform: uppercase;
 }
 
+/* The tiny gold bullet dot inside the identity strip heading */
 .eyebrow-mark {
     width: 7px;
     height: 7px;
     background: var(--brand-gold);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--brand-gold-glow);
+    border-radius: 50%;                              /* Perfect circle              */
+    box-shadow: 0 0 10px var(--brand-gold-glow);     /* Gold glow around the dot    */
 }
 
 .identity-strip p {
@@ -531,10 +700,11 @@ button {
     font-size: 0.92rem;
 }
 
+/* Row of profile links inside the identity strip */
 .identity-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem 1rem;
+    gap: 0.5rem 1rem;  /* Row gap 0.5rem, column gap 1rem */
 }
 
 .identity-links a {
@@ -550,11 +720,12 @@ button {
     color: var(--brand-gold);
 }
 
+/* Pill badge at the top of the hero section ("Flight Dynamics · GNC · Spacecraft Autonomy") */
 .hero-pill-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    background: var(--brand-gold-muted);
+    background: var(--brand-gold-muted);                   /* Very subtle gold tint */
     border: 1px solid rgba(223, 134, 0, 0.4);
     color: var(--brand-gold);
     padding: 0.45rem 1rem;
@@ -564,35 +735,46 @@ button {
     margin-bottom: 1.5rem;
 }
 
+/* The animated green pulsing dot inside the pill badge */
 .pulse-dot {
     width: 8px;
     height: 8px;
-    background-color: #22c55e;
+    background-color: #22c55e;          /* Green color (like a "live" indicator) */
     border-radius: 50%;
     box-shadow: 0 0 10px #22c55e;
-    animation: pulse 2s infinite;
+    /* animation: name duration timing-function iteration-count */
+    animation: pulse 2s infinite;       /* Run "pulse" keyframes forever, 2s each cycle */
 }
 
+/* Keyframe animation for the pulsing dot.
+   @keyframes defines the animation stages.
+   0% = start, 70% = middle, 100% = end */
 @keyframes pulse {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    0%   { transform: scale(0.95); box-shadow: 0 0 0 0   rgba(34, 197, 94, 0.7); }
+    70%  { transform: scale(1);    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);   }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0   rgba(34, 197, 94, 0);   }
 }
 
+/* Large "Hi, I'm Rodolfo B. Negri" heading */
 .hero-greeting {
     font-size: 3.5rem;
     font-weight: 800;
     line-height: 1.12;
     margin-bottom: 1.5rem;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.025em;  /* Slightly tighter tracking for large text */
 }
 
+/* The name "Rodolfo B. Negri" in gold gradient text */
 .hero-greeting .gold-gradient-text {
     background: linear-gradient(135deg, var(--brand-gold) 0%, #e0a052 100%);
+    /* -webkit-background-clip: text = apply gradient only to text shape, not box */
     -webkit-background-clip: text;
+    /* -webkit-text-fill-color: transparent = make the text itself transparent,
+       so the background gradient shows through it */
     -webkit-text-fill-color: transparent;
 }
 
+/* First paragraph of hero — slightly larger font for emphasis */
 .hero-lead {
     font-size: 1.28rem;
     line-height: 1.7;
@@ -601,11 +783,13 @@ button {
     font-weight: 400;
 }
 
+/* <strong> elements inside .hero-lead should be brighter */
 .hero-lead strong {
     color: var(--text-primary);
     font-weight: 600;
 }
 
+/* Second paragraph — smaller, more muted */
 .hero-subtext {
     font-size: 1.05rem;
     line-height: 1.7;
@@ -613,15 +797,22 @@ button {
     margin-bottom: 2.5rem;
 }
 
-/* Hero Action Buttons */
+
+/* ==========================================================================
+   HERO BUTTONS (Call-To-Action)
+   Two styles: primary (gold gradient) and secondary (outlined navy).
+   ========================================================================== */
+
+/* Flex container that wraps buttons in a row */
 .hero-cta-group {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;      /* Wrap to next row on small screens */
     align-items: center;
-    gap: 1rem;
+    gap: 1rem;            /* Space between buttons */
     margin-bottom: 3.5rem;
 }
 
+/* Primary gold button (most important action) */
 .btn-primary-gold {
     display: inline-flex;
     align-items: center;
@@ -639,10 +830,11 @@ button {
 .btn-primary-gold:hover {
     color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(223, 134, 0, 0.45);
+    box-shadow: 0 8px 24px rgba(223, 134, 0, 0.45); /* Stronger shadow on hover */
     background: linear-gradient(135deg, #d28a2a 0%, var(--brand-gold) 100%);
 }
 
+/* Secondary navy/outlined button */
 .btn-secondary-navy {
     display: inline-flex;
     align-items: center;
@@ -663,67 +855,85 @@ button {
     transform: translateY(-2px);
 }
 
-/* Quick Stats Bar */
+
+/* ==========================================================================
+   STATS GRID (4 numbers in the hero section)
+   CSS Grid auto-fits columns that are at least 180px wide.
+   ========================================================================== */
 .hero-stats-grid {
+    /* repeat(auto-fit, minmax(180px, 1fr)):
+       - auto-fit = as many columns as fit
+       - minmax(180px, 1fr) = each column is at least 180px, max 1fr (equal share)
+       This automatically adjusts from 4 columns on desktop to 1 on mobile! */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1.25rem;
     margin-top: 1rem;
 }
 
+/* Individual stat box */
 .stat-box {
     background: var(--bg-card);
     border: 1px solid var(--border-card);
     padding: 1.5rem 1.25rem;
     border-radius: var(--border-radius-md);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);           /* Blur content behind the card        */
     transition: var(--transition-smooth);
-    border-left: 3px solid var(--brand-gold);
+    border-left: 3px solid var(--brand-gold); /* Gold left accent line             */
 }
 
 .stat-box:hover {
-    transform: translateY(-3px);
+    transform: translateY(-3px);           /* Lift effect on hover                */
     border-color: var(--brand-gold);
     box-shadow: var(--shadow-md);
 }
 
+/* The large number (e.g., "14+") */
 .stat-number {
     font-family: 'Outfit', sans-serif;
     font-size: 2.2rem;
     font-weight: 800;
     color: var(--brand-gold);
-    line-height: 1;
+    line-height: 1;                        /* No extra vertical space             */
     margin-bottom: 0.4rem;
 }
 
+/* The description text below the number */
 .stat-label {
     font-size: 0.85rem;
     color: var(--text-secondary);
     font-weight: 500;
 }
 
+
 /* ==========================================================================
-   Fleet / Satellite Mission Highlight Box
+   FLEET CARD (Satellite Operations section)
+   A large banner card listing the 5 satellites.
    ========================================================================== */
 .fleet-card {
-    background: linear-gradient(135deg, rgba(0, 42, 98, 0.6) 0%, rgba(6, 22, 45, 0.8) 100%);
+    background: linear-gradient(135deg,
+        rgba(0, 42, 98, 0.6) 0%,     /* Navy at 60% opacity */
+        rgba(6, 22, 45, 0.8) 100%     /* Darker navy at 80% opacity */
+    );
     border: 1px solid var(--border-card);
     border-radius: var(--border-radius-lg);
     padding: 2rem;
     margin-bottom: 3rem;
-    position: relative;
-    overflow: hidden;
+    position: relative;               /* For the ::before pseudo-element */
+    overflow: hidden;                 /* Clip the glow effect to the card boundaries */
 }
 
+/* Decorative radial glow in the top-right corner (pure CSS, no image needed) */
 .fleet-card::before {
-    content: '';
+    content: '';                      /* ::before requires content (even if empty)  */
     position: absolute;
     top: 0;
     right: 0;
     width: 250px;
     height: 250px;
+    /* radial-gradient: circle from center, gold at center, transparent at edge */
     background: radial-gradient(circle, var(--brand-gold-muted) 0%, transparent 70%);
-    pointer-events: none;
+    pointer-events: none;             /* Don't block clicks */
 }
 
 .fleet-title {
@@ -735,6 +945,7 @@ button {
     color: var(--brand-gold);
 }
 
+/* Row of satellite badge pills */
 .satellite-badges-wrap {
     display: flex;
     flex-wrap: wrap;
@@ -742,6 +953,7 @@ button {
     margin-top: 1rem;
 }
 
+/* Each individual satellite badge */
 .sat-badge {
     background: var(--bg-surface-elevated);
     border: 1px solid var(--border-card);
@@ -758,17 +970,19 @@ button {
     color: var(--brand-gold);
 }
 
+
 /* ==========================================================================
-   About Section & Experience Timelines
+   ABOUT SECTION: BIO TEXT & TIMELINES
    ========================================================================== */
 .about-bio-text {
     font-size: 1.12rem;
-    line-height: 1.8;
+    line-height: 1.8;                /* More breathing room for longer paragraphs */
     color: var(--text-secondary);
     margin-bottom: 2.5rem;
     max-width: 950px;
 }
 
+/* Sub-headings within sections (e.g., "Professional Positions", "Education") */
 .section-subtitle {
     font-size: 1.45rem;
     font-weight: 700;
@@ -783,36 +997,41 @@ button {
     color: var(--brand-gold);
 }
 
-/* Timeline Layout */
+/* ──────────────────────────────────────────────────────────────
+   TIMELINE — the vertical list with dots and a connecting line
+   ────────────────────────────────────────────────────────────── */
 .timeline {
     position: relative;
+    /* The vertical blue line is the left border of this element */
     border-left: 2px solid var(--brand-navy-light);
-    margin-left: 1.25rem;
-    padding-left: 2.25rem;
+    margin-left: 1.25rem;            /* Push right so dot can sit on the line */
+    padding-left: 2.25rem;           /* Space between line and content        */
     max-width: 980px;
 }
 
 .timeline-item {
-    position: relative;
+    position: relative;              /* For the absolute-positioned dot       */
     margin-bottom: 2.75rem;
 }
 
 .timeline-item:last-child {
-    margin-bottom: 1rem;
+    margin-bottom: 1rem;             /* Less space after the last item        */
 }
 
+/* The golden circle dot on the timeline line */
 .timeline-dot {
     position: absolute;
-    left: -2.85rem;
+    left: -2.85rem;                  /* Position it ON the vertical line       */
     top: 0.2rem;
     width: 18px;
     height: 18px;
     border-radius: 50%;
     background: var(--brand-gold);
-    border: 4px solid var(--bg-base);
+    border: 4px solid var(--bg-base);  /* Same as background = creates a "punch through" */
     box-shadow: 0 0 10px var(--brand-gold-glow);
 }
 
+/* The date label (e.g., "Sep 2025 – Present") in small gold uppercase text */
 .timeline-date-tag {
     display: inline-block;
     font-size: 0.8rem;
@@ -823,6 +1042,7 @@ button {
     margin-bottom: 0.35rem;
 }
 
+/* Job/degree title */
 .timeline-role {
     font-size: 1.2rem;
     font-weight: 700;
@@ -830,6 +1050,7 @@ button {
     margin-bottom: 0.25rem;
 }
 
+/* Institution name below the role */
 .timeline-org {
     font-size: 0.95rem;
     font-weight: 600;
@@ -837,6 +1058,7 @@ button {
     margin-bottom: 0.65rem;
 }
 
+/* Description text / bullet list */
 .timeline-desc {
     color: var(--text-secondary);
     font-size: 0.95rem;
@@ -845,14 +1067,18 @@ button {
 
 .timeline-desc ul {
     margin-top: 0.5rem;
-    padding-left: 1.25rem;
+    padding-left: 1.25rem;           /* Indent bullet points */
 }
 
 .timeline-desc li {
     margin-bottom: 0.35rem;
 }
 
-/* Awards Grid */
+
+/* ==========================================================================
+   AWARDS GRID
+   Two-column grid of award cards (with auto-sizing).
+   ========================================================================== */
 .awards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -868,7 +1094,7 @@ button {
     padding: 1.75rem;
     position: relative;
     transition: var(--transition-smooth);
-    border-top: 3px solid var(--brand-gold);
+    border-top: 3px solid var(--brand-gold);  /* Gold top accent line */
 }
 
 .award-card:hover {
@@ -877,6 +1103,7 @@ button {
     box-shadow: var(--shadow-md);
 }
 
+/* Icon box inside award cards */
 .award-icon-wrap {
     width: 48px;
     height: 48px;
@@ -909,12 +1136,14 @@ button {
     line-height: 1.5;
 }
 
+
 /* ==========================================================================
-   Research Interests & Space Mission Cards
+   RESEARCH AREA CARDS GRID (Operations section)
+   6 cards arranged in a responsive 3-column grid.
    ========================================================================== */
 .research-cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* auto-fill adds empty tracks */
     gap: 1.5rem;
     max-width: 1100px;
 }
@@ -927,15 +1156,17 @@ button {
     transition: var(--transition-smooth);
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Stack children vertically */
 }
 
 .research-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px);           /* Lift on hover                */
     border-color: var(--brand-gold);
+    /* Multiple shadows separated by commas — stacked on each other */
     box-shadow: var(--shadow-lg), var(--shadow-accent);
 }
 
+/* The large icon at the top of each research card */
 .research-card-icon {
     font-size: 2.4rem;
     color: var(--brand-gold);
@@ -953,15 +1184,17 @@ button {
     font-size: 0.93rem;
     line-height: 1.6;
     margin-bottom: 1.25rem;
-    flex-grow: 1;
+    flex-grow: 1;  /* Push the tags to the bottom of the card */
 }
 
+/* Row of technology/topic tag pills */
 .research-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
 }
 
+/* Individual tag pill */
 .tech-tag {
     font-size: 0.76rem;
     font-weight: 600;
@@ -972,25 +1205,32 @@ button {
     border-radius: 6px;
 }
 
+
 /* ==========================================================================
-   Featured Focus Spotlight (Sociedade Interplanetária Brasileira)
+   FEATURED PAPER BOX (Publications section spotlight)
+   A prominent highlighted card for the most notable paper.
    ========================================================================== */
 .featured-paper-box {
-    background: linear-gradient(135deg, rgba(0, 42, 98, 0.75) 0%, rgba(2, 11, 24, 0.9) 100%);
-    border: 2px solid var(--brand-gold);
+    background: linear-gradient(135deg,
+        rgba(0, 42, 98, 0.75) 0%,
+        rgba(2, 11, 24, 0.9) 100%
+    );
+    border: 2px solid var(--brand-gold);          /* Full gold border */
     border-radius: var(--border-radius-lg);
     padding: 2.25rem;
     margin-bottom: 3rem;
+    /* Multiple box-shadows: regular drop shadow + gold glow */
     box-shadow: var(--shadow-lg), 0 0 30px rgba(223, 134, 0, 0.2);
     position: relative;
     max-width: 1050px;
 }
 
+/* The "Featured History of Science Publication" badge at the top */
 .featured-header-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: var(--brand-gold);
+    background: var(--brand-gold);   /* Solid gold badge */
     color: #ffffff;
     font-size: 0.78rem;
     font-weight: 800;
@@ -1015,22 +1255,24 @@ button {
 }
 
 .featured-paper-meta strong {
-    color: var(--brand-gold);
+    color: var(--brand-gold);   /* Author name in gold */
 }
 
+/* Abstract blockquote-style box with gold left border */
 .featured-paper-abstract {
     background: rgba(0, 0, 0, 0.25);
     border-left: 3px solid var(--brand-gold);
     padding: 1.25rem;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 8px 8px 0;    /* Round only the right side */
     font-size: 0.93rem;
     line-height: 1.7;
     color: var(--text-primary);
     margin-bottom: 1.5rem;
 }
 
+
 /* ==========================================================================
-   Publications List & Interactive Filter Tabs
+   PUBLICATIONS FILTER BUTTONS
    ========================================================================== */
 .pub-filter-container {
     display: flex;
@@ -1039,12 +1281,13 @@ button {
     margin-bottom: 2rem;
 }
 
+/* Base filter button style */
 .filter-btn {
     background: var(--bg-surface-elevated);
     border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
     padding: 0.55rem 1.2rem;
-    border-radius: var(--border-radius-full);
+    border-radius: var(--border-radius-full);  /* Pill shape */
     font-size: 0.88rem;
     font-weight: 600;
     transition: var(--transition-smooth);
@@ -1055,6 +1298,7 @@ button {
     border-color: var(--brand-gold);
 }
 
+/* The currently selected filter button gets a solid gold background */
 .filter-btn.active {
     background: var(--brand-gold);
     color: #ffffff;
@@ -1066,6 +1310,12 @@ button {
     max-width: 1050px;
 }
 
+
+/* ==========================================================================
+   PUBLICATION CARDS
+   Each paper entry uses a two-column flex layout:
+   [Year Badge | Paper Details (title, authors, venue, buttons)]
+   ========================================================================== */
 .pub-card {
     background: var(--bg-card);
     border: 1px solid var(--border-card);
@@ -1073,8 +1323,8 @@ button {
     padding: 1.75rem;
     margin-bottom: 1.5rem;
     transition: var(--transition-smooth);
-    display: flex;
-    gap: 1.5rem;
+    display: flex;        /* Flex row: badge on left, details on right */
+    gap: 1.5rem;          /* Space between badge and details            */
     position: relative;
 }
 
@@ -1084,29 +1334,32 @@ button {
     transform: translateY(-2px);
 }
 
+/* Year badge (e.g., "2024") on the left of the card */
 .pub-year-badge {
     font-family: 'Outfit', sans-serif;
     font-size: 1.2rem;
     font-weight: 800;
     color: var(--brand-gold);
     background: var(--brand-gold-muted);
-    height: fit-content;
+    height: fit-content;                   /* Only as tall as its content */
     padding: 0.4rem 0.8rem;
     border-radius: 8px;
     border: 1px solid rgba(223, 134, 0, 0.3);
-    flex-shrink: 0;
+    flex-shrink: 0;                        /* Don't shrink even if space is tight */
 }
 
+/* The right-side content area grows to fill remaining space */
 .pub-details {
     flex-grow: 1;
 }
 
+/* Paper title as a link */
 .pub-title-link {
     color: var(--text-primary);
     font-size: 1.15rem;
     font-weight: 700;
     line-height: 1.4;
-    display: block;
+    display: block;             /* Full-width block element */
     margin-bottom: 0.4rem;
     transition: color 0.2s;
 }
@@ -1121,17 +1374,20 @@ button {
     margin-bottom: 0.35rem;
 }
 
+/* Your name in author list shown in brighter color */
 .pub-authors strong {
     color: var(--text-primary);
 }
 
+/* Journal name and volume/year (italic per academic convention) */
 .pub-venue {
     font-size: 0.9rem;
     color: var(--text-muted);
-    font-style: italic;
+    font-style: italic;          /* Italic = academic convention for journal names */
     margin-bottom: 1rem;
 }
 
+/* Row of action buttons below each paper */
 .pub-actions {
     display: flex;
     flex-wrap: wrap;
@@ -1139,6 +1395,7 @@ button {
     gap: 0.6rem;
 }
 
+/* Base style for pub action buttons (DOI, arXiv, BibTeX) */
 .pub-btn {
     display: inline-flex;
     align-items: center;
@@ -1159,6 +1416,7 @@ button {
     border-color: var(--brand-gold);
 }
 
+/* DOI button variant — gold text to stand out */
 .pub-btn.doi-btn {
     color: var(--brand-gold);
     border-color: rgba(223, 134, 0, 0.4);
@@ -1169,37 +1427,53 @@ button {
     color: #ffffff;
 }
 
+/* BibTeX button needs pointer cursor (it's a <button>, not a <a>) */
 .pub-btn.bibtex-btn {
     cursor: pointer;
 }
 
-/* BibTeX Drawer / Box */
+
+/* ==========================================================================
+   BIBTEX DRAWER
+   A collapsible box showing the BibTeX citation code.
+   Hidden by default; JavaScript adds "open" to show it.
+   ========================================================================== */
 .bibtex-box {
-    display: none;
+    display: none;          /* Hidden. JS adds "open" class to show it. */
     margin-top: 1rem;
     background: var(--bg-input);
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
     padding: 1rem;
-    position: relative;
+    position: relative;     /* For the absolute-positioned Copy button */
 }
 
+/* When JS adds "open" class, show the box with a fade animation */
 .bibtex-box.open {
     display: block;
     animation: fadeIn 0.2s ease;
 }
 
+/* @keyframes defines an animation sequence.
+   "fadeIn" just animates opacity from 0 to 1 = fade in effect. */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* The preformatted BibTeX code text */
 .bibtex-code {
-    font-family: 'Consolas', 'Monaco', monospace;
+    font-family: 'Consolas', 'Monaco', monospace; /* Monospace = equal-width characters, good for code */
     font-size: 0.8rem;
     color: var(--text-secondary);
-    white-space: pre-wrap;
-    word-break: break-all;
+    white-space: pre-wrap;  /* Preserve whitespace and line breaks but allow wrapping */
+    word-break: break-all;  /* Break long strings so they don't overflow the box */
     line-height: 1.45;
 }
 
+/* Copy button positioned in the top-right corner of the BibTeX box */
 .copy-bibtex-btn {
-    position: absolute;
+    position: absolute;     /* Relative to .bibtex-box (which is position: relative) */
     top: 0.5rem;
     right: 0.5rem;
     background: var(--brand-navy);
@@ -1217,8 +1491,10 @@ button {
     color: #ffffff;
 }
 
+
 /* ==========================================================================
-   Teaching & Mentoring Section
+   TEACHING SECTION
+   Cards for each course taught.
    ========================================================================== */
 .teaching-card {
     background: var(--bg-card);
@@ -1230,11 +1506,13 @@ button {
     max-width: 980px;
 }
 
+/* The current/upcoming course card has a gold left border and navy tint */
 .teaching-card.current-highlight {
     border-left: 4px solid var(--brand-gold);
     background: linear-gradient(135deg, rgba(0, 42, 98, 0.5) 0%, var(--bg-card) 100%);
 }
 
+/* Small badge showing "Upcoming / Current Course" or "Taught Course" */
 .teaching-status-badge {
     display: inline-block;
     font-size: 0.75rem;
@@ -1245,12 +1523,14 @@ button {
     margin-bottom: 0.5rem;
 }
 
+/* Green variant for upcoming/current courses */
 .teaching-status-badge.upcoming {
-    background: rgba(34, 197, 94, 0.15);
+    background: rgba(34, 197, 94, 0.15);      /* Very subtle green background */
     color: #22c55e;
     border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
+/* Grey/muted variant for past courses */
 .teaching-status-badge.past {
     background: var(--badge-bg);
     color: var(--text-secondary);
@@ -1277,7 +1557,11 @@ button {
     line-height: 1.6;
 }
 
-/* Editorial & Reviewer Badges */
+
+/* ==========================================================================
+   JOURNALS REVIEW BADGE LIST
+   A flex-wrap of badge pills showing journals you review for.
+   ========================================================================== */
 .journals-grid {
     display: flex;
     flex-wrap: wrap;
@@ -1308,8 +1592,10 @@ button {
     transform: translateY(-2px);
 }
 
+
 /* ==========================================================================
-   Contact Section & Cards
+   CONTACT SECTION
+   Four contact info cards in a responsive grid.
    ========================================================================== */
 .contact-grid {
     display: grid;
@@ -1324,7 +1610,7 @@ button {
     border: 1px solid var(--border-card);
     border-radius: var(--border-radius-lg);
     padding: 2rem 1.5rem;
-    text-align: center;
+    text-align: center;        /* Center all content horizontally */
     transition: var(--transition-smooth);
 }
 
@@ -1334,6 +1620,7 @@ button {
     box-shadow: var(--shadow-md);
 }
 
+/* Large icon at the top of contact cards */
 .contact-card i {
     font-size: 2.5rem;
     color: var(--brand-gold);
@@ -1355,7 +1642,11 @@ button {
     color: var(--brand-gold-hover);
 }
 
-/* CV Download Callout in Contact / About */
+
+/* ==========================================================================
+   CV DOWNLOAD CALLOUT CARD (Contact section)
+   Horizontal card with text on left, download button on right.
+   ========================================================================== */
 .cv-action-card {
     background: linear-gradient(135deg, var(--brand-navy) 0%, #031838 100%);
     border: 1px solid var(--brand-gold);
@@ -1363,7 +1654,7 @@ button {
     padding: 2.25rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between;  /* Text left, button right */
     gap: 2rem;
     max-width: 980px;
     box-shadow: var(--shadow-md);
@@ -1376,15 +1667,18 @@ button {
 }
 
 .cv-action-info p {
-    color: #cbd5e1;
+    color: #cbd5e1;     /* Light gray text (light enough on dark background) */
     font-size: 0.92rem;
 }
 
+
 /* ==========================================================================
-   Toast Notification / Clipboard Feedback
+   TOAST NOTIFICATION (clipboard feedback)
+   A pill-shaped popup that slides up from the bottom-right corner.
+   Starts invisible; JavaScript adds "show" class to reveal it.
    ========================================================================== */
 .toast-notice {
-    position: fixed;
+    position: fixed;               /* Fixed to the viewport, not the page         */
     bottom: 2rem;
     right: 2rem;
     background: var(--brand-gold);
@@ -1394,54 +1688,70 @@ button {
     font-weight: 700;
     font-size: 0.9rem;
     box-shadow: var(--shadow-lg);
-    opacity: 0;
-    transform: translateY(20px);
-    pointer-events: none;
+    opacity: 0;                    /* Invisible by default                        */
+    transform: translateY(20px);   /* 20px below final position (for slide-in)   */
+    pointer-events: none;          /* Don't block clicks when invisible           */
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 9999;
+    z-index: 9999;                 /* Always on top of everything                 */
 }
 
+/* When JS adds "show" class, fade in and slide up to final position */
 .toast-notice.show {
     opacity: 1;
     transform: translateY(0);
 }
 
+
 /* ==========================================================================
-   Responsive Adaptations (Tablets & Mobile)
+   RESPONSIVE DESIGN — MEDIA QUERIES
+   @media rules apply styles ONLY when certain conditions are met.
+   (max-width: 1024px) = apply styles when screen is 1024px wide OR LESS.
+   This is called "mobile-first" or "responsive" design.
    ========================================================================== */
+
+/* TABLET AND MOBILE (screens 1024px wide or narrower) */
 @media (max-width: 1024px) {
+    /* Hide sidebar by sliding it off-screen to the left */
     .sidebar {
-        transform: translateX(-100%);
+        transform: translateX(-100%);  /* Move 100% of its own width to the left = hidden */
         width: 300px;
-        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);  /* Shadow on the right edge when open */
     }
 
+    /* When JavaScript adds "open" class, slide sidebar back into view */
     .sidebar.open {
-        transform: translateX(0);
+        transform: translateX(0);  /* Back to original position = visible */
     }
 
+    /* Show the mobile top bar */
     .mobile-topbar {
         display: flex;
     }
 
+    /* Main content: no left margin (sidebar is now floating, not in flow),
+       add top padding so content doesn't hide behind the mobile top bar */
     .main-content {
         margin-left: 0;
-        padding-top: 6rem;
+        padding-top: 6rem;     /* 64px header + some breathing room */
         padding-left: 1.5rem;
         padding-right: 1.5rem;
     }
 
+    /* Smaller hero heading on tablet */
     .hero-greeting {
         font-size: 2.75rem;
     }
 
+    /* Stack the CV card vertically on tablet */
     .cv-action-card {
-        flex-direction: column;
+        flex-direction: column;  /* Stack text above button */
         text-align: center;
     }
 }
 
+/* SMALL MOBILE (screens 640px wide or narrower) */
 @media (max-width: 640px) {
+    /* Even smaller heading on phone */
     .hero-greeting {
         font-size: 2.2rem;
     }
@@ -1450,16 +1760,19 @@ button {
         font-size: 1.1rem;
     }
 
+    /* Pub cards: stack year badge above details (instead of side by side) */
     .pub-card {
-        flex-direction: column;
+        flex-direction: column;  /* Vertical stack on small screens */
         gap: 0.75rem;
     }
 
+    /* Year badge aligns to left when stacked vertically */
     .pub-year-badge {
         align-self: flex-start;
     }
 
+    /* Stats grid: 2 columns instead of 4 on phone */
     .hero-stats-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;  /* Two equal columns */
     }
 }
