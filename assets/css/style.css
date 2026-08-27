@@ -945,6 +945,12 @@ button {
     color: var(--brand-gold);
 }
 
+[data-theme="light"] .fleet-card {
+    background: linear-gradient(135deg, #ffffff 0%, #eef5fb 100%);
+    border-color: rgba(0, 42, 98, 0.18);
+    box-shadow: var(--shadow-md);
+}
+
 /* Row of satellite badge pills */
 .satellite-badges-wrap {
     display: flex;
@@ -1270,16 +1276,22 @@ button {
     margin-bottom: 1.5rem;
 }
 
+[data-theme="light"] .featured-paper-box {
+    background: linear-gradient(135deg, #ffffff 0%, #eef5fb 100%);
+    box-shadow: var(--shadow-lg);
+}
+
 [data-theme="light"] .featured-paper-title {
-    color: #f8fafc;
+    color: var(--text-primary);
 }
 
 [data-theme="light"] .featured-paper-meta {
-    color: #e2e8f0;
+    color: var(--text-secondary);
 }
 
 [data-theme="light"] .featured-paper-abstract {
-    color: #f8fafc;
+    background: #f1f5f9;
+    color: var(--text-primary);
 }
 
 
@@ -1522,6 +1534,13 @@ button {
 .teaching-card.current-highlight {
     border-left: 4px solid var(--brand-gold);
     background: linear-gradient(135deg, rgba(0, 42, 98, 0.5) 0%, var(--bg-card) 100%);
+}
+
+[data-theme="light"] .teaching-card.current-highlight {
+    background: linear-gradient(135deg, #ffffff 0%, #eef5fb 100%);
+    border-color: rgba(0, 42, 98, 0.18);
+    border-left-color: var(--brand-gold);
+    box-shadow: var(--shadow-md);
 }
 
 /* Small badge showing "Upcoming / Current Course" or "Taught Course" */
