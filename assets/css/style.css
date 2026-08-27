@@ -1270,6 +1270,18 @@ button {
     margin-bottom: 1.5rem;
 }
 
+[data-theme="light"] .featured-paper-title {
+    color: #f8fafc;
+}
+
+[data-theme="light"] .featured-paper-meta {
+    color: #e2e8f0;
+}
+
+[data-theme="light"] .featured-paper-abstract {
+    color: #f8fafc;
+}
+
 
 /* ==========================================================================
    PUBLICATIONS FILTER BUTTONS
