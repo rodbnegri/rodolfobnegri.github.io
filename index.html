@@ -45,7 +45,7 @@
   render the page incorrectly.
 -->
 
-<html lang="en">
+<html lang="en-US">
 <!--
   <html> is the root element — everything lives inside it.
   lang="en" tells browsers and search engines that the page
@@ -97,6 +97,30 @@
     content="Astrodynamics, Spacecraft Autonomy, Satellite Operations (SCD-1, SCD-2, CBERS-4, CBERS-4A, AMZ-1), and Guidance, Navigation &amp; Control.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rodolfobnegri.github.io/">
+  <meta property="og:image" content="https://rodolfobnegri.github.io/negri.jpg">
+  <meta property="og:image:alt" content="Portrait of Dr. Rodolfo Batista Negri">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dr. Rodolfo Batista Negri | GNC Researcher">
+  <meta name="twitter:description" content="Flight dynamics, spacecraft autonomy, astrodynamics, and satellite operations at INPE.">
+  <meta name="twitter:image" content="https://rodolfobnegri.github.io/negri.jpg">
+  <link rel="icon" type="image/jpeg" href="negri.jpg">
+  <link rel="canonical" href="https://rodolfobnegri.github.io/">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Rodolfo Batista Negri",
+      "url": "https://rodolfobnegri.github.io/",
+      "jobTitle": "GNC Researcher and Flight Dynamics Engineer",
+      "worksFor": { "@type": "Organization", "name": "National Institute for Space Research (INPE)" },
+      "sameAs": [
+        "https://www.linkedin.com/in/rodolfobnegri/",
+        "https://orcid.org/0000-0002-8196-8579",
+        "https://github.com/rodbnegri",
+        "https://scholar.google.com/citations?user=mf_cztYAAAAJ"
+      ]
+    }
+  </script>
 
   <!-- ══════════════════════════════════════════════════════════
        GOOGLE FONTS
@@ -175,7 +199,7 @@
     </div>
     <!-- Button to toggle (open/close) the sidebar drawer on mobile.
          aria-label is read by screen readers for accessibility. -->
-    <button class="mobile-nav-toggle" aria-label="Toggle navigation menu">
+    <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="site-sidebar">
       <i class="ph ph-list"></i>
     </button>
   </header>
@@ -195,7 +219,7 @@
          Here it is the fixed left panel with your profile card,
          navigation menu, social links, and theme/CV buttons.
          ══════════════════════════════════════════════════════════ -->
-    <aside class="sidebar">
+    <aside id="site-sidebar" class="sidebar">
 
       <!-- ──────────────────────────────────────────────────────
            PROFILE CARD
@@ -206,7 +230,7 @@
         <div class="profile-avatar-wrap">
           <!-- Your profile photo. alt="..." is the text shown if
                the image fails to load, and read by screen readers. -->
-          <img src="negri.jpg" alt="Rodolfo Batista Negri" class="profile-avatar">
+          <img src="negri.jpg" alt="Portrait of Rodolfo Batista Negri" class="profile-avatar" width="130" height="130" fetchpriority="high">
           <!-- Small satellite icon badge positioned over the photo corner -->
           <div class="status-orbit-badge" title="Active Operations at INPE CCS">
             <i class="ph ph-satellite"></i>
@@ -235,7 +259,7 @@
       <ul class="nav-menu">
         <li class="nav-item">
           <!-- "active" class is added by JS to highlight the current page -->
-          <a href="#home" class="nav-link active" data-section="home">
+          <a href="#home" class="nav-link active" data-section="home" aria-current="page">
             <i class="ph ph-house"></i> Home
           </a>
         </li>
@@ -252,6 +276,11 @@
         <li class="nav-item">
           <a href="#research" class="nav-link" data-section="research">
             <i class="ph ph-flask"></i> Research
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#projects" class="nav-link" data-section="projects">
+            <i class="ph ph-code"></i> Selected Projects
           </a>
         </li>
         <li class="nav-item">
@@ -402,6 +431,13 @@
             <a href="#operations" class="btn-secondary-navy" data-jump="operations">
               <i class="ph ph-satellite"></i> Satellite Fleet &amp; GNC
             </a>
+          </div>
+
+          <div class="home-link-row" aria-label="Professional profiles">
+            <a href="https://github.com/rodbnegri" target="_blank" rel="noopener noreferrer"><i class="ph ph-github-logo"></i> GitHub</a>
+            <a href="https://orcid.org/0000-0002-8196-8579" target="_blank" rel="noopener noreferrer"><i class="ph ph-identification-card"></i> ORCID</a>
+            <a href="https://scholar.google.com/citations?user=mf_cztYAAAAJ&amp;hl=pt-BR" target="_blank" rel="noopener noreferrer"><i class="ph ph-graduation-cap"></i> Google Scholar</a>
+            <a href="mailto:rodolfo.negri@inpe.br"><i class="ph ph-envelope"></i> Contact me</a>
           </div>
 
           <!-- ──────────────────────────────────────────────────────
@@ -797,6 +833,45 @@
 
       </section>
          <!-- END Section 4: Research -->
+
+      <section id="projects" class="content-section">
+        <div class="section-header">
+          <div class="section-pretitle"><i class="ph ph-code"></i> Engineering Portfolio</div>
+          <h2 class="section-title">Selected Projects</h2>
+          <div class="section-accent-line"></div>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-icon"><i class="ph ph-orbit"></i></div>
+            <span class="project-status">Active development</span>
+            <h3>DINORekit</h3>
+            <p>Orekit-powered tools for orbit determination, precision propagation, maneuver calibration, and TLE generation for LEO missions.</p>
+            <div class="project-tags"><span>Orekit</span><span>Java</span><span>Flight Dynamics</span></div>
+          </article>
+          <article class="project-card">
+            <div class="project-icon"><i class="ph ph-satellite"></i></div>
+            <span class="project-status">Operational systems</span>
+            <h3>CCS Flight Dynamics Toolchain</h3>
+            <p>Automation connecting legacy software, numerical routines, telemetry analysis, pass prediction, and CCSDS workflows.</p>
+            <div class="project-tags"><span>CCSDS</span><span>C++</span><span>Python</span></div>
+          </article>
+          <article class="project-card">
+            <div class="project-icon"><i class="ph ph-navigation-arrow"></i></div>
+            <span class="project-status">Research platform</span>
+            <h3>Autonomous Spacecraft Simulation</h3>
+            <p>Coupled six-degree-of-freedom orbit-attitude simulations with computer vision and synthetic camera pipelines for asteroid missions.</p>
+            <div class="project-tags"><span>Julia</span><span>OpenCV</span><span>Blender</span></div>
+          </article>
+          <article class="project-card project-card-tbd">
+            <div class="project-icon"><i class="ph ph-plus-circle"></i></div>
+            <span class="project-status">Coming soon</span>
+            <h3>Project details</h3>
+            <p>Additional project information, code repositories, and technical documentation will be added here.</p>
+            <div class="project-tags"><span>TBD</span></div>
+          </article>
+        </div>
+      </section>
 
       <!-- ============================================================
            SECTION 5: PUBLICATIONS
@@ -1584,7 +1659,7 @@
        class to make it slide up and appear, then removes it after
        2.5 seconds.
        ══════════════════════════════════════════════════════════ -->
-  <div id="toast-notice" class="toast-notice">BibTeX copied to clipboard!</div>
+  <div id="toast-notice" class="toast-notice" role="status" aria-live="polite">BibTeX copied to clipboard!</div>
 
   <!-- ══════════════════════════════════════════════════════════
        JAVASCRIPT FILE

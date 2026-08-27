@@ -132,10 +132,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Step 3: Update the nav links (highlight the active one)
         navLinks.forEach(link => {
             link.classList.remove('active');  // Clear all first
+            link.removeAttribute('aria-current');
             // getAttribute() reads an HTML attribute value
             // data-section="home" → link.getAttribute('data-section') returns "home"
             if (link.getAttribute('data-section') === sectionId) {
                 link.classList.add('active');  // Highlight the matching link
+                link.setAttribute('aria-current', 'page');
             }
         });
 
@@ -147,6 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // On desktop, this condition is never true (sidebar doesn't have "open")
         if (sidebar && sidebar.classList.contains('open')) {
             sidebar.classList.remove('open');
+            if (mobileNavToggle) {
+                mobileNavToggle.setAttribute('aria-expanded', 'false');
+            }
         }
     }
 
@@ -229,7 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileNavToggle && sidebar) {
         mobileNavToggle.addEventListener('click', () => {
             // toggle() adds "open" if missing, removes it if present
-            sidebar.classList.toggle('open');
+            const isOpen = sidebar.classList.toggle('open');
+            mobileNavToggle.setAttribute('aria-expanded', String(isOpen));
         });
     }
 
@@ -249,6 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // We DON'T close if the click was INSIDE the sidebar or ON the toggle button
             if (!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target)) {
                 sidebar.classList.remove('open');
+                mobileNavToggle.setAttribute('aria-expanded', 'false');
             }
         }
     });
@@ -525,7 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let height = canvas.height = window.innerHeight;
 
         // Configuration: how many stars to draw
-        const numStars = 65;
+        const numStars = window.innerWidth <= 640 ? 25 : 65;
 
         // Array to store all star objects. Each star has:
         // x, y = position on canvas (in pixels)

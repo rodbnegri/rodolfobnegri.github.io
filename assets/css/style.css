@@ -219,6 +219,11 @@ button {
     cursor: pointer;      /* Show hand cursor on hover (default is usually arrow) */
 }
 
+:focus-visible {
+    outline: 3px solid var(--brand-gold);
+    outline-offset: 3px;
+}
+
 
 /* ==========================================================================
    STARFIELD CANVAS
@@ -398,62 +403,10 @@ button {
     box-shadow: var(--shadow-sm);
 }
 
-    background: linear-gradient(135deg, #003e8f 0%, #06162d 100%);
-    border-color: var(--brand-gold);
-}
-    margin-bottom: 0.25rem;
-[data-theme="light"] .fleet-card > p {
-    color: #f8fafc !important;
-}
-    [data-theme="light"] .sat-badge {
-        background: rgba(255, 255, 255, 0.12);
-        border-color: rgba(255, 255, 255, 0.24);
-        color: #f8fafc;
-    }
-
-    [data-theme="light"] .featured-paper-box {
-        background: linear-gradient(135deg, #003e8f 0%, #06162d 100%);
-        box-shadow: var(--shadow-lg), 0 0 30px rgba(0, 42, 98, 0.25);
-    }
-
-    [data-theme="light"] .featured-paper-title {
-        color: #f8fafc;
-    }
-
-    [data-theme="light"] .featured-paper-meta {
-        color: #e2e8f0;
-    }
-
-    [data-theme="light"] .featured-paper-abstract {
-        background: rgba(0, 0, 0, 0.28);
-        color: #f8fafc;
-    }
-
-    [data-theme="light"] .featured-paper-abstract strong {
-        color: #ffffff;
-    }
-
-    [data-theme="light"] .featured-paper-box .pub-btn {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.3);
-        color: #f8fafc;
-    }
-
-    [data-theme="light"] .featured-paper-box .pub-btn:hover {
-        background: var(--brand-gold);
-        border-color: var(--brand-gold);
-        color: #ffffff;
-    }
-
-    [data-theme="light"] .featured-paper-box .pub-btn.doi-btn {
-        color: #ffd58a;
-        border-color: rgba(255, 213, 138, 0.65);
-    }
-
-    [data-theme="light"] .featured-paper-box .pub-btn.doi-btn:hover {
-        color: #ffffff;
-    }
+.profile-name {
+    font-size: 1.55rem;
     color: var(--text-primary);
+    margin-bottom: 0.25rem;
 }
 
 .profile-tagline {
@@ -769,6 +722,86 @@ button {
 
 .identity-links a:hover {
     color: var(--brand-gold);
+}
+.home-link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1.25rem;
+    margin: -1.5rem 0 2.25rem;
+}
+.home-link-row a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+.home-link-row a:hover {
+    color: var(--brand-gold);
+}
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    max-width: 1100px;
+}
+.project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-top: 3px solid var(--brand-gold);
+    border-radius: var(--border-radius-md);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+    transition: var(--transition-smooth);
+}
+.project-card:hover {
+    border-color: var(--brand-gold);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+}
+.project-card-tbd {
+    border-top-color: var(--border-card);
+    border-style: dashed;
+}
+.project-icon {
+    color: var(--brand-gold);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.project-status {
+    color: var(--brand-gold);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+.project-card h3 {
+    font-size: 1.2rem;
+    margin: 0.35rem 0 0.65rem;
+}
+.project-card p {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+}
+.project-tags span {
+    background: var(--badge-bg);
+    border: 1px solid var(--badge-border);
+    border-radius: 6px;
+    color: var(--badge-text);
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 0.25rem 0.55rem;
 }
 
 /* Pill badge at the top of the hero section ("Flight Dynamics · GNC · Spacecraft Autonomy") */
@@ -1840,6 +1873,15 @@ button {
     transform: translateY(0);
 }
 
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
 
 /* ==========================================================================
    RESPONSIVE DESIGN — MEDIA QUERIES
@@ -1913,5 +1955,13 @@ button {
     /* Stats grid: 2 columns instead of 4 on phone */
     .hero-stats-grid {
         grid-template-columns: 1fr 1fr;  /* Two equal columns */
+    }
+
+    .home-link-row {
+        gap: 0.65rem 1rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
     }
 }
