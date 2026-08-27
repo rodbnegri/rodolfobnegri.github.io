@@ -398,10 +398,61 @@ button {
     box-shadow: var(--shadow-sm);
 }
 
-.profile-name {
-    font-size: 1.35rem;
-    font-weight: 700;
+    background: linear-gradient(135deg, #003e8f 0%, #06162d 100%);
+    border-color: var(--brand-gold);
+}
     margin-bottom: 0.25rem;
+[data-theme="light"] .fleet-card > p {
+    color: #f8fafc !important;
+}
+    [data-theme="light"] .sat-badge {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.24);
+        color: #f8fafc;
+    }
+
+    [data-theme="light"] .featured-paper-box {
+        background: linear-gradient(135deg, #003e8f 0%, #06162d 100%);
+        box-shadow: var(--shadow-lg), 0 0 30px rgba(0, 42, 98, 0.25);
+    }
+
+    [data-theme="light"] .featured-paper-title {
+        color: #f8fafc;
+    }
+
+    [data-theme="light"] .featured-paper-meta {
+        color: #e2e8f0;
+    }
+
+    [data-theme="light"] .featured-paper-abstract {
+        background: rgba(0, 0, 0, 0.28);
+        color: #f8fafc;
+    }
+
+    [data-theme="light"] .featured-paper-abstract strong {
+        color: #ffffff;
+    }
+
+    [data-theme="light"] .featured-paper-box .pub-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+        color: #f8fafc;
+    }
+
+    [data-theme="light"] .featured-paper-box .pub-btn:hover {
+        background: var(--brand-gold);
+        border-color: var(--brand-gold);
+        color: #ffffff;
+    }
+
+    [data-theme="light"] .featured-paper-box .pub-btn.doi-btn {
+        color: #ffd58a;
+        border-color: rgba(255, 213, 138, 0.65);
+    }
+
+    [data-theme="light"] .featured-paper-box .pub-btn.doi-btn:hover {
+        color: #ffffff;
+    }
     color: var(--text-primary);
 }
 
@@ -946,9 +997,13 @@ button {
 }
 
 [data-theme="light"] .fleet-card {
-    background: linear-gradient(135deg, #ffffff 0%, #eef5fb 100%);
-    border-color: rgba(0, 42, 98, 0.18);
+    background: linear-gradient(135deg, #003e8f 0%, #06162d 100%);
+    border-color: var(--brand-gold);
     box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .fleet-card > p {
+    color: #f8fafc !important;
 }
 
 /* Row of satellite badge pills */
@@ -974,6 +1029,12 @@ button {
 
 .sat-badge i {
     color: var(--brand-gold);
+}
+
+[data-theme="light"] .sat-badge {
+    background: #002a62;
+    border-color: rgba(255, 255, 255, 0.28);
+    color: #f8fafc;
 }
 
 
@@ -1193,6 +1254,17 @@ button {
     flex-grow: 1;  /* Push the tags to the bottom of the card */
 }
 
+[data-theme="light"] .research-card {
+    background: linear-gradient(135deg, #003e8f 0%, #06162d 100%);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .research-card h3,
+[data-theme="light"] .research-card p {
+    color: #f8fafc;
+}
+
 /* Row of technology/topic tag pills */
 .research-tags {
     display: flex;
@@ -1209,6 +1281,12 @@ button {
     border: 1px solid var(--badge-border);
     padding: 0.25rem 0.6rem;
     border-radius: 6px;
+}
+
+[data-theme="light"] .research-card .tech-tag {
+    background: #002a62;
+    color: #f8fafc;
+    border-color: rgba(255, 255, 255, 0.28);
 }
 
 
@@ -1277,21 +1355,46 @@ button {
 }
 
 [data-theme="light"] .featured-paper-box {
-    background: linear-gradient(135deg, #ffffff 0%, #eef5fb 100%);
-    box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, #003e8f 0%, #06162d 100%);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(0, 42, 98, 0.25);
 }
 
 [data-theme="light"] .featured-paper-title {
-    color: var(--text-primary);
+    color: #f8fafc;
 }
 
 [data-theme="light"] .featured-paper-meta {
-    color: var(--text-secondary);
+    color: #e2e8f0;
 }
 
 [data-theme="light"] .featured-paper-abstract {
-    background: #f1f5f9;
-    color: var(--text-primary);
+    background: rgba(0, 0, 0, 0.28);
+    color: #f8fafc;
+}
+
+[data-theme="light"] .featured-paper-abstract strong {
+    color: #ffffff;
+}
+
+[data-theme="light"] .featured-paper-box .pub-btn {
+    background: #002a62;
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #f8fafc;
+}
+
+[data-theme="light"] .featured-paper-box .pub-btn:hover {
+    background: var(--brand-gold);
+    border-color: var(--brand-gold);
+    color: #ffffff;
+}
+
+[data-theme="light"] .featured-paper-box .pub-btn.doi-btn {
+    color: #ffd58a;
+    border-color: rgba(255, 213, 138, 0.65);
+}
+
+[data-theme="light"] .featured-paper-box .pub-btn.doi-btn:hover {
+    color: #ffffff;
 }
 
 
@@ -1537,10 +1640,15 @@ button {
 }
 
 [data-theme="light"] .teaching-card.current-highlight {
-    background: linear-gradient(135deg, #ffffff 0%, #eef5fb 100%);
-    border-color: rgba(0, 42, 98, 0.18);
+    background: linear-gradient(135deg, #003e8f 0%, #06162d 100%);
+    border-color: rgba(255, 255, 255, 0.2);
     border-left-color: var(--brand-gold);
     box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .teaching-card.current-highlight .teaching-course-title,
+[data-theme="light"] .teaching-card.current-highlight .teaching-description {
+    color: #f8fafc;
 }
 
 /* Small badge showing "Upcoming / Current Course" or "Taught Course" */
